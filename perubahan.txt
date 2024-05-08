@@ -1,0 +1,4 @@
+view l_unitkerjakabkotadetail
+controller admin function unitkerjakabkotadetail
+view l_kegiatanunitkerja
+controller admin function unitkerjaprov

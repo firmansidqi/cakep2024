@@ -1,0 +1,176 @@
+[29-Apr-2021 08:59:22 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '++' (T_INC) in /home/bpsk7477/public_html/evita/application/views/admin/f_kelolakegiatan.php on line 222
+[22-Mar-2022 10:16:08 Asia/Jakarta] PHP Fatal error:  Call to undefined function today() in /home/bpsk7477/public_html/evita/application/views/admin/f_entry_unitkerjakab.php on line 9
+[22-Mar-2022 10:16:10 Asia/Jakarta] PHP Fatal error:  Call to undefined function today() in /home/bpsk7477/public_html/evita/application/views/admin/f_entry_unitkerjakab.php on line 9
+[22-Mar-2022 10:17:23 Asia/Jakarta] PHP Fatal error:  Class 'Yii' not found in /home/bpsk7477/public_html/evita/application/views/admin/f_entry_unitkerjakab.php on line 9
+[22-Mar-2022 10:18:30 Asia/Jakarta] PHP Fatal error:  Call to undefined function DateTime() in /home/bpsk7477/public_html/evita/application/views/admin/f_entry_unitkerjakab.php on line 9
+[22-Mar-2022 10:18:32 Asia/Jakarta] PHP Fatal error:  Call to undefined function DateTime() in /home/bpsk7477/public_html/evita/application/views/admin/f_entry_unitkerjakab.php on line 9
+[22-Mar-2022 10:20:46 Asia/Jakarta] PHP Fatal error:  Function name must be a string in /home/bpsk7477/public_html/evita/application/views/admin/f_entry_unitkerjakab.php on line 14
+[22-Mar-2022 10:20:49 Asia/Jakarta] PHP Fatal error:  Function name must be a string in /home/bpsk7477/public_html/evita/application/views/admin/f_entry_unitkerjakab.php on line 14
+[03-Jan-2023 10:41:09 Asia/Jakarta] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO), expecting ')' in /home/bpsk7477/public_html/evita/application/views/admin/l_duplikasikegiatan.php on line 59
+[03-Jan-2023 10:41:11 Asia/Jakarta] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO), expecting ')' in /home/bpsk7477/public_html/evita/application/views/admin/l_duplikasikegiatan.php on line 59
+[04-May-2023 07:26:08 Asia/Jakarta] PHP Fatal error:  Call to undefined function get() in /home/bpsk7477/public_html/evita/application/models/M_kelolakegiatan.php on line 656
+[04-May-2023 07:26:49 Asia/Jakarta] PHP Fatal error:  Call to undefined function get() in /home/bpsk7477/public_html/evita/application/views/admin/f_kelolakegiatan23.php on line 405
+[04-May-2023 07:56:07 Asia/Jakarta] PHP Fatal error:  Call to a member function result() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/f_kelolakegiatan23.php on line 403
+[04-May-2023 08:07:12 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '$p' (T_VARIABLE), expecting ',' or ';' in /home/bpsk7477/public_html/evita/application/views/admin/f_kelolakegiatan23.php on line 413
+[07-May-2023 17:13:04 Asia/Jakarta] PHP Fatal error:  Unsupported operand types in /home/bpsk7477/public_html/evita/application/controllers/Admin.php on line 648
+[08-May-2023 06:54:49 Asia/Jakarta] PHP Parse error:  syntax error, unexpected end of file in /home/bpsk7477/public_html/evita/application/views/admin/f_kelolakegiatan.php on line 659
+[08-May-2023 07:53:28 Asia/Jakarta] PHP Fatal error:  Unsupported operand types in /home/bpsk7477/public_html/evita/application/controllers/Admin.php on line 765
+[08-May-2023 08:20:00 Asia/Jakarta] PHP Fatal error:  Unsupported operand types in /home/bpsk7477/public_html/evita/application/controllers/Admin.php on line 765
+[08-May-2023 08:22:41 Asia/Jakarta] PHP Fatal error:  Unsupported operand types in /home/bpsk7477/public_html/evita/application/controllers/Admin.php on line 766
+[08-May-2023 12:42:22 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/v_kegiatan_detail.php on line 3
+[08-May-2023 12:42:44 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/v_kegiatan_detail.php on line 3
+[08-May-2023 12:42:45 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/v_kegiatan_detail.php on line 3
+[08-May-2023 12:42:56 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/v_kegiatan_detail.php on line 3
+[08-May-2023 12:44:52 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/v_kegiatan_detail.php on line 4
+[08-May-2023 12:45:11 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/v_kegiatan_detail.php on line 4
+[08-May-2023 12:45:11 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/v_kegiatan_detail.php on line 4
+[08-May-2023 14:44:21 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '[', expecting ',' or ';' in /home/bpsk7477/public_html/evita/application/views/admin/v_kegiatan_detail.php on line 82
+[08-May-2023 14:44:23 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '[', expecting ',' or ';' in /home/bpsk7477/public_html/evita/application/views/admin/v_kegiatan_detail.php on line 82
+[08-May-2023 14:46:36 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '[', expecting ',' or ';' in /home/bpsk7477/public_html/evita/application/views/admin/v_kegiatan_detail.php on line 82
+[10-May-2023 09:13:21 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '}' in /home/bpsk7477/public_html/evita/application/views/admin/v_kegiatan_detail.php on line 107
+[10-May-2023 10:10:55 Asia/Jakarta] PHP Fatal error:  Call to undefined function getPegawaiTerpilih() in /home/bpsk7477/public_html/evita/application/views/admin/v_kegiatan_detail.php on line 85
+[10-May-2023 10:23:49 Asia/Jakarta] PHP Fatal error:  Call to undefined function getPegawaiTerpilih() in /home/bpsk7477/public_html/evita/application/views/admin/v_kegiatan_detail.php on line 85
+[10-May-2023 10:41:49 Asia/Jakarta] PHP Fatal error:  Call to undefined function getPegawaiTerpilih() in /home/bpsk7477/public_html/evita/application/views/admin/v_kegiatan_detail.php on line 85
+[10-May-2023 10:42:09 Asia/Jakarta] PHP Fatal error:  Call to undefined function tgl_jam_sql2() in /home/bpsk7477/public_html/evita/application/views/admin/v_kegiatan_detail.php on line 33
+[10-May-2023 12:49:05 Asia/Jakarta] PHP Fatal error:  Call to undefined function tgl_jam_sql2() in /home/bpsk7477/public_html/evita/application/views/admin/v_kegiatan_detail.php on line 33
+[10-May-2023 12:49:20 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/helpers/my_helper.php on line 139
+[10-May-2023 12:50:04 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/helpers/my_helper.php on line 139
+[10-May-2023 12:50:14 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/helpers/my_helper.php on line 139
+[10-May-2023 12:51:04 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/helpers/my_helper.php on line 139
+[10-May-2023 13:08:46 Asia/Jakarta] PHP Fatal error:  Call to undefined method M_kelolakegiatan::getPgwTerpilih() in /home/bpsk7477/public_html/evita/application/views/admin/v_kegiatan_detail.php on line 85
+[10-May-2023 13:13:35 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/v_kegiatan_detail.php on line 28
+[10-May-2023 14:10:43 Asia/Jakarta] PHP Parse error:  syntax error, unexpected end of file in /home/bpsk7477/public_html/evita/application/views/admin/v_kegiatan_detail.php on line 271
+[10-May-2023 14:26:39 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/models/M_kelolakegiatan.php on line 655
+[12-May-2023 14:05:48 Asia/Jakarta] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/bpsk7477/public_html/evita/application/helpers/my_helper.php on line 138
+[12-May-2023 14:08:11 Asia/Jakarta] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/bpsk7477/public_html/evita/application/helpers/my_helper.php on line 139
+[12-May-2023 14:43:09 Asia/Jakarta] PHP Fatal error:  Cannot use [] for reading in /home/bpsk7477/public_html/evita/application/helpers/my_helper.php on line 145
+[12-May-2023 15:41:16 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '}' in /home/bpsk7477/public_html/evita/application/views/admin/l_unitkerjakabkotadetail.php on line 125
+[12-May-2023 15:41:34 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '}' in /home/bpsk7477/public_html/evita/application/views/admin/l_unitkerjakabkotadetail.php on line 125
+[15-May-2023 06:50:50 Asia/Jakarta] PHP Fatal error:  Call to undefined function getsminggu() in /home/bpsk7477/public_html/evita/application/views/admin/l_unitkerjakabkotadetail.php on line 107
+[15-May-2023 06:57:35 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ')' in /home/bpsk7477/public_html/evita/application/views/admin/l_unitkerjakabkotadetail.php on line 133
+[15-May-2023 06:57:48 Asia/Jakarta] PHP Fatal error:  Call to undefined function getsminggu() in /home/bpsk7477/public_html/evita/application/views/admin/l_unitkerjakabkotadetail.php on line 107
+[15-May-2023 10:07:31 Asia/Jakarta] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/bpsk7477/public_html/evita/application/views/admin/l_unitkerjakabkotadetail.php on line 186
+[15-May-2023 10:07:34 Asia/Jakarta] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/bpsk7477/public_html/evita/application/views/admin/l_unitkerjakabkotadetail.php on line 186
+[15-May-2023 10:07:37 Asia/Jakarta] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/bpsk7477/public_html/evita/application/views/admin/l_unitkerjakabkotadetail.php on line 186
+[15-May-2023 10:07:44 Asia/Jakarta] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/bpsk7477/public_html/evita/application/views/admin/l_unitkerjakabkotadetail.php on line 186
+[15-May-2023 10:07:56 Asia/Jakarta] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/bpsk7477/public_html/evita/application/views/admin/l_unitkerjakabkotadetail.php on line 186
+[15-May-2023 10:07:58 Asia/Jakarta] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/bpsk7477/public_html/evita/application/views/admin/l_unitkerjakabkotadetail.php on line 186
+[15-May-2023 10:08:02 Asia/Jakarta] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/bpsk7477/public_html/evita/application/views/admin/l_unitkerjakabkotadetail.php on line 186
+[15-May-2023 10:08:07 Asia/Jakarta] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/bpsk7477/public_html/evita/application/views/admin/l_unitkerjakabkotadetail.php on line 186
+[15-May-2023 10:12:41 Asia/Jakarta] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/bpsk7477/public_html/evita/application/views/admin/l_unitkerjakabkotadetail.php on line 186
+[15-May-2023 10:12:48 Asia/Jakarta] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/bpsk7477/public_html/evita/application/views/admin/l_unitkerjakabkotadetail.php on line 186
+[15-May-2023 10:12:53 Asia/Jakarta] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/bpsk7477/public_html/evita/application/views/admin/l_unitkerjakabkotadetail.php on line 186
+[15-May-2023 13:11:34 Asia/Jakarta] PHP Fatal error:  Call to undefined method CI_URI::segmen() in /home/bpsk7477/public_html/evita/application/controllers/Admin.php on line 1718
+[17-May-2023 09:41:22 Asia/Jakarta] PHP Fatal error:  Call to a member function diff() on a non-object in /home/bpsk7477/public_html/evita/application/controllers/Admin.php on line 2448
+[18-May-2023 21:10:08 Asia/Jakarta] PHP Parse error:  syntax error, unexpected end of file in /home/bpsk7477/public_html/evita/application/views/admin/l_kegiatan2.php on line 521
+[18-May-2023 21:11:38 Asia/Jakarta] PHP Parse error:  syntax error, unexpected end of file in /home/bpsk7477/public_html/evita/application/views/admin/l_kegiatan2.php on line 521
+[18-May-2023 21:12:04 Asia/Jakarta] PHP Parse error:  syntax error, unexpected end of file in /home/bpsk7477/public_html/evita/application/views/admin/l_kegiatan2.php on line 521
+[18-May-2023 21:13:20 Asia/Jakarta] PHP Parse error:  syntax error, unexpected end of file in /home/bpsk7477/public_html/evita/application/views/admin/l_kegiatan2.php on line 521
+[18-May-2023 21:14:12 Asia/Jakarta] PHP Parse error:  syntax error, unexpected end of file in /home/bpsk7477/public_html/evita/application/views/admin/l_kegiatan2.php on line 521
+[18-May-2023 21:14:25 Asia/Jakarta] PHP Parse error:  syntax error, unexpected end of file in /home/bpsk7477/public_html/evita/application/views/admin/l_kegiatan2.php on line 521
+[18-May-2023 21:14:56 Asia/Jakarta] PHP Parse error:  syntax error, unexpected end of file in /home/bpsk7477/public_html/evita/application/views/admin/l_kegiatan2.php on line 521
+[18-May-2023 23:10:16 Asia/Jakarta] PHP Parse error:  syntax error, unexpected 'admin' (T_STRING) in /home/bpsk7477/public_html/evita/application/controllers/Admin.php on line 1247
+[18-May-2023 23:20:45 Asia/Jakarta] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/bpsk7477/public_html/evita/application/controllers/Admin.php on line 1248
+[18-May-2023 23:20:48 Asia/Jakarta] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/bpsk7477/public_html/evita/application/controllers/Admin.php on line 1248
+[18-May-2023 23:21:53 Asia/Jakarta] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/bpsk7477/public_html/evita/application/controllers/Admin.php on line 1248
+[22-May-2023 03:41:14 Asia/Jakarta] PHP Fatal error:  Function name must be a string in /home/bpsk7477/public_html/evita/application/controllers/Admin.php on line 2389
+[22-May-2023 03:43:35 Asia/Jakarta] PHP Fatal error:  Function name must be a string in /home/bpsk7477/public_html/evita/application/controllers/Admin.php on line 2389
+[22-May-2023 08:36:49 Asia/Jakarta] PHP Fatal error:  Call to undefined function query() in /home/bpsk7477/public_html/evita/application/models/M_kelolakegiatan.php on line 676
+[22-May-2023 08:37:49 Asia/Jakarta] PHP Fatal error:  Call to undefined function query() in /home/bpsk7477/public_html/evita/application/models/M_kelolakegiatan.php on line 676
+[22-May-2023 08:40:52 Asia/Jakarta] PHP Fatal error:  Call to undefined function query() in /home/bpsk7477/public_html/evita/application/models/M_kelolakegiatan.php on line 676
+[22-May-2023 09:29:52 Asia/Jakarta] PHP Fatal error:  Call to undefined function query() in /home/bpsk7477/public_html/evita/application/models/M_kelolakegiatan.php on line 676
+[22-May-2023 09:31:27 Asia/Jakarta] PHP Fatal error:  Call to undefined function query() in /home/bpsk7477/public_html/evita/application/models/M_kelolakegiatan.php on line 676
+[22-May-2023 09:32:12 Asia/Jakarta] PHP Fatal error:  Call to undefined function query() in /home/bpsk7477/public_html/evita/application/models/M_kelolakegiatan.php on line 676
+[22-May-2023 09:32:26 Asia/Jakarta] PHP Fatal error:  Call to undefined function query() in /home/bpsk7477/public_html/evita/application/models/M_kelolakegiatan.php on line 676
+[29-May-2023 04:05:24 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '(', expecting ',' or ';' in /home/bpsk7477/public_html/evita/application/views/admin/f_kelolakegiatan.php on line 494
+[01-Sep-2023 08:07:11 Asia/Jakarta] PHP Fatal error:  Cannot use object of type stdClass as array in /home/bpsk7477/public_html/evita/application/views/admin/l_kegiatanunitkerja.php on line 90
+[01-Sep-2023 08:12:10 Asia/Jakarta] PHP Fatal error:  Cannot use object of type stdClass as array in /home/bpsk7477/public_html/evita/application/views/admin/l_kegiatanunitkerja.php on line 90
+[01-Sep-2023 08:12:24 Asia/Jakarta] PHP Fatal error:  Cannot use object of type stdClass as array in /home/bpsk7477/public_html/evita/application/views/admin/l_kegiatanunitkerja.php on line 90
+[01-Sep-2023 08:13:01 Asia/Jakarta] PHP Fatal error:  Cannot use object of type stdClass as array in /home/bpsk7477/public_html/evita/application/views/admin/l_kegiatanunitkerja.php on line 90
+[01-Sep-2023 08:13:17 Asia/Jakarta] PHP Fatal error:  Cannot use object of type stdClass as array in /home/bpsk7477/public_html/evita/application/views/admin/l_kegiatanunitkerja.php on line 90
+[03-Sep-2023 13:34:10 Asia/Jakarta] PHP Fatal error:  Call to undefined function float() in /home/bpsk7477/public_html/evita/application/views/admin/l_kegiatanunitkerja.php on line 115
+[30-Jan-2024 10:08:13 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '<' in /home/bpsk7477/public_html/evita/application/views/admin/f_tambahkegiatan.php on line 325
+[30-Jan-2024 10:08:15 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '<' in /home/bpsk7477/public_html/evita/application/views/admin/f_tambahkegiatan.php on line 325
+[31-Jan-2024 07:37:25 Asia/Jakarta] PHP Parse error:  syntax error, unexpected end of file in /home/bpsk7477/public_html/evita/application/views/admin/f_kelolakegiatan.php on line 578
+[31-Jan-2024 10:39:52 Asia/Jakarta] PHP Parse error:  syntax error, unexpected 'foreach' (T_FOREACH), expecting variable (T_VARIABLE) or '$' in /home/bpsk7477/public_html/evita/application/views/admin/v_kegiatan_unitkerja_detail.php on line 53
+[31-Jan-2024 11:08:18 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/v_kegiatan_unitkerja_detail.php on line 71
+[31-Jan-2024 12:44:53 Asia/Jakarta] PHP Parse error:  syntax error, unexpected end of file in /home/bpsk7477/public_html/evita/application/views/admin/v_kegiatan_unitkerja_detail.php on line 294
+[31-Jan-2024 12:44:55 Asia/Jakarta] PHP Parse error:  syntax error, unexpected end of file in /home/bpsk7477/public_html/evita/application/views/admin/v_kegiatan_unitkerja_detail.php on line 294
+[31-Jan-2024 12:47:41 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '}' in /home/bpsk7477/public_html/evita/application/views/admin/v_kegiatan_unitkerja_detail.php on line 134
+[01-Feb-2024 05:38:50 Asia/Jakarta] PHP Parse error:  syntax error, unexpected end of file in /home/bpsk7477/public_html/evita/application/views/admin/l_alokasikegiatan.php on line 154
+[01-Feb-2024 06:44:25 Asia/Jakarta] PHP Parse error:  syntax error, unexpected end of file in /home/bpsk7477/public_html/evita/application/views/admin/f_ubahtarget.php on line 552
+[02-Feb-2024 04:38:52 Asia/Jakarta] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home/bpsk7477/public_html/evita/application/views/admin/dashboard_komplit.php on line 168
+[02-Feb-2024 07:23:22 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ']' in /home/bpsk7477/public_html/evita/application/views/admin/v_kegiatan_unitkerja_detail.php on line 138
+[05-Feb-2024 00:44:38 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in /home/bpsk7477/public_html/evita/application/controllers/Admin.php on line 2066
+[05-Feb-2024 00:56:34 Asia/Jakarta] PHP Fatal error:  Cannot use object of type stdClass as array in /home/bpsk7477/public_html/evita/application/controllers/Admin.php on line 2030
+[05-Feb-2024 01:00:29 Asia/Jakarta] PHP Fatal error:  Cannot use object of type stdClass as array in /home/bpsk7477/public_html/evita/application/controllers/Admin.php on line 2030
+[05-Feb-2024 01:01:00 Asia/Jakarta] PHP Fatal error:  Cannot use object of type stdClass as array in /home/bpsk7477/public_html/evita/application/controllers/Admin.php on line 2030
+[05-Feb-2024 01:05:47 Asia/Jakarta] PHP Fatal error:  Cannot use object of type stdClass as array in /home/bpsk7477/public_html/evita/application/controllers/Admin.php on line 2030
+[05-Feb-2024 01:06:02 Asia/Jakarta] PHP Fatal error:  Cannot use object of type stdClass as array in /home/bpsk7477/public_html/evita/application/controllers/Admin.php on line 2030
+[05-Feb-2024 01:07:21 Asia/Jakarta] PHP Fatal error:  Cannot use object of type stdClass as array in /home/bpsk7477/public_html/evita/application/controllers/Admin.php on line 2030
+[05-Feb-2024 03:30:48 Asia/Jakarta] PHP Fatal error:  Call to undefined function SUBSTRING() in /home/bpsk7477/public_html/evita/application/views/admin/f_approvtarget.php on line 4
+[05-Feb-2024 03:32:11 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '}' in /home/bpsk7477/public_html/evita/application/views/admin/f_approvtarget.php on line 72
+[05-Feb-2024 03:32:40 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '}' in /home/bpsk7477/public_html/evita/application/views/admin/f_approvtarget.php on line 72
+[06-Feb-2024 17:52:48 Asia/Jakarta] PHP Fatal error:  Cannot redeclare Admin::index() in /home/bpsk7477/public_html/evita/application/controllers/Admin.php on line 60
+[06-Feb-2024 17:53:30 Asia/Jakarta] PHP Fatal error:  Cannot redeclare Admin::index() in /home/bpsk7477/public_html/evita/application/controllers/Admin.php on line 60
+[06-Feb-2024 17:53:32 Asia/Jakarta] PHP Fatal error:  Cannot redeclare Admin::index() in /home/bpsk7477/public_html/evita/application/controllers/Admin.php on line 60
+[06-Feb-2024 17:54:28 Asia/Jakarta] PHP Fatal error:  Cannot redeclare Admin::index() in /home/bpsk7477/public_html/evita/application/controllers/Admin.php on line 60
+[16-Feb-2024 13:42:53 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '<' in /home/bpsk7477/public_html/evita/application/views/admin/dashboard_komplit.php on line 298
+[16-Feb-2024 21:25:11 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 25
+[16-Feb-2024 21:25:23 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 25
+[16-Feb-2024 21:25:43 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 25
+[16-Feb-2024 21:50:52 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 43
+[16-Feb-2024 21:53:43 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 43
+[16-Feb-2024 22:12:05 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 43
+[16-Feb-2024 22:12:54 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 43
+[16-Feb-2024 22:13:45 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 43
+[16-Feb-2024 22:13:55 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 43
+[16-Feb-2024 22:13:59 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 43
+[16-Feb-2024 22:14:01 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 43
+[16-Feb-2024 22:14:02 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 43
+[16-Feb-2024 22:19:31 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 43
+[16-Feb-2024 22:20:10 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 43
+[16-Feb-2024 22:20:19 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 43
+[16-Feb-2024 22:20:25 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 43
+[16-Feb-2024 22:20:28 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 43
+[16-Feb-2024 22:20:37 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 43
+[16-Feb-2024 22:21:00 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 43
+[16-Feb-2024 22:21:01 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 43
+[16-Feb-2024 22:25:38 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 46
+[16-Feb-2024 22:26:15 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 46
+[16-Feb-2024 22:28:28 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 46
+[16-Feb-2024 22:39:15 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 46
+[16-Feb-2024 22:42:44 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 49
+[16-Feb-2024 22:42:46 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 49
+[16-Feb-2024 22:42:58 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 49
+[16-Feb-2024 22:52:09 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 61
+[16-Feb-2024 22:52:57 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 61
+[16-Feb-2024 22:52:58 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 61
+[16-Feb-2024 22:53:20 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 61
+[16-Feb-2024 22:53:22 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 61
+[16-Feb-2024 22:56:50 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 61
+[16-Feb-2024 22:59:16 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 61
+[16-Feb-2024 23:00:56 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 61
+[16-Feb-2024 23:07:33 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 61
+[16-Feb-2024 23:07:55 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 61
+[16-Feb-2024 23:09:41 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 61
+[16-Feb-2024 23:10:19 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 61
+[16-Feb-2024 23:13:34 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 61
+[16-Feb-2024 23:13:53 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 61
+[16-Feb-2024 23:15:29 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 65
+[16-Feb-2024 23:16:25 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 65
+[16-Feb-2024 23:20:12 Asia/Jakarta] PHP Fatal error:  Call to a member function query() on a non-object in /home/bpsk7477/public_html/evita/application/views/admin/l_notifikasi.php on line 65
+[22-Feb-2024 22:54:00 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '}' in /home/bpsk7477/public_html/evita/application/views/admin/f_kelolakegiatan.php on line 31
+[26-Feb-2024 02:30:22 Asia/Jakarta] PHP Parse error:  syntax error, unexpected end of file in /home/bpsk7477/public_html/evita/application/views/admin/f_ubahtarget.php on line 464
+[26-Feb-2024 02:30:29 Asia/Jakarta] PHP Parse error:  syntax error, unexpected end of file in /home/bpsk7477/public_html/evita/application/views/admin/f_ubahtarget.php on line 464
+[26-Feb-2024 02:30:44 Asia/Jakarta] PHP Parse error:  syntax error, unexpected end of file in /home/bpsk7477/public_html/evita/application/views/admin/f_ubahtarget.php on line 464
+[26-Feb-2024 02:33:04 Asia/Jakarta] PHP Parse error:  syntax error, unexpected end of file in /home/bpsk7477/public_html/evita/application/views/admin/f_ubahtarget.php on line 460
+[26-Feb-2024 02:33:05 Asia/Jakarta] PHP Parse error:  syntax error, unexpected end of file in /home/bpsk7477/public_html/evita/application/views/admin/f_ubahtarget.php on line 460
+[26-Feb-2024 02:42:49 Asia/Jakarta] PHP Parse error:  syntax error, unexpected end of file in /home/bpsk7477/public_html/evita/application/views/admin/f_ubahtarget.php on line 428
+[26-Feb-2024 02:52:54 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';' in /home/bpsk7477/public_html/evita/application/views/admin/v_alokasikegiatan_detail.php on line 57
+[26-Feb-2024 02:52:56 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';' in /home/bpsk7477/public_html/evita/application/views/admin/v_alokasikegiatan_detail.php on line 57
+[04-Mar-2024 13:21:45 Asia/Jakarta] PHP Fatal error:  Unsupported operand types in /home/bpsk7477/public_html/evita/application/views/admin/dashboard_komplit.php on line 213
+[22-Mar-2024 10:44:55 Asia/Jakarta] PHP Fatal error:  Call to undefined function friday() in /home/bpsk7477/public_html/evita/application/views/admin/l_kegiatanunitkerja.php on line 54
+[27-Mar-2024 10:20:15 Asia/Jakarta] PHP Parse error:  syntax error, unexpected '}' in /home/bpsk7477/public_html/evita/application/views/admin/l_kegiatan.php on line 252
+[27-Mar-2024 10:50:00 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ':' in /home/bpsk7477/public_html/evita/application/views/admin/l_kegiatan.php on line 118
+[01-Apr-2024 09:48:11 Asia/Jakarta] PHP Fatal error:  Call to undefined function int() in /home/bpsk7477/public_html/evita/application/controllers/Admin.php on line 1935

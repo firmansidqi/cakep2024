@@ -1,0 +1,479 @@
+<?php
+	if($this->uri->segment(3) == null )
+	{
+		$tab=1;
+	}
+	else 
+	{
+		$tab = $this->uri->segment(3);
+	}
+		
+?>
+
+<div id="ModalDelete" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+</div>
+
+
+<div class="clearfix">
+<div class="row">
+  <div class="col-lg-12">
+	<div class="navbar navbar-inverse">
+	
+		<div class="navbar-header">
+			<span class="navbar-brand" href="#">- Progress Pengelolaan Kontrak -</span>
+		</div>
+
+</div><!-- /.navbar -->
+  
+<?php echo $this->session->flashdata("k");?>  
+	  
+	<div class="container">
+	<div class="row">
+    <div class="col-sm-12 blog-main">
+	<div class="tabs">
+	
+        <!-- content blog anda isikan disini-->
+		<ul class="nav nav-tabs" id="prodTabs">
+			<li <?php echo $tab==1?"class='active'":"" ?> ><a href="#all" data-toggle="tab">All</a></li>
+			<li <?php echo $tab==2?"class='active'":"" ?> ><a href="#spk" data-toggle="tab">SPK</a></li>
+			<li <?php echo $tab==3?"class='active'":"" ?> ><a href="#bast" data-toggle="tab">BAST</a></li>
+			<li <?php echo $tab==4?"class='active'":"" ?> ><a href="#selesai" data-toggle="tab">SELESAI</a></li>
+			
+	  </ul>
+      <!-- Tab panes content dari tab di atas -->
+      <div class="tab-content">
+      <div class="scroll tab-pane <?php echo $tab==1?"active":"" ?>" id="all"><br>
+				<?php
+				$tab=1;
+				?>
+				<ul class="nav navbar-nav">
+					<a href="<?php echo base_URL(); ?>index.php/admin/kontrak/add/1" class="btn btn-danger"><i class="icon-plus-sign icon-white"> </i> Tambah Kontrak</a>
+				</ul>
+				
+				<ul class="nav navbar-nav navbar-right">
+					<form class="navbar-form navbar-left" method="post" action="<?php echo base_URL(); ?>index.php/admin/kontrak/cari">
+						<input type="text" class="form-control" name="q" style="width: 200px" placeholder="Kata kunci pencarian ..." required>
+						<button type="submit" class="btn btn-danger"><i class="icon-search icon-white"> </i> Cari</button>
+					</form>
+				</ul>
+			<br>
+	   		<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th width="5%">No.</th>
+						<th width="15%">Uraian Kontrak</th>
+						<th width="10%">Rekanan</th>
+						<th width="10%">Nilai Bruto</th>
+						<th width="10%">Tanggal SPK</th>
+						<th width="10%">No SPK</th>
+						<th width="10%">BASTP</th>
+						<th width="10%">No BASTP</th>
+						<th width="10%">Tgl Daftar ADK</th>
+						<th width="10%">Tgl Maju SPM</th>
+						<th width="15%">Action</th>
+						<?php
+						if ($this->session->userdata('admin_user') == "atas")
+						{
+						?>
+							<th width="10%">Konfirmasi Selesai</th>
+						<?php
+						}
+						?>
+					</tr>
+				</thead>
+				<tbody>
+					<?php 
+					if (empty($dataall)) {
+						echo "<tr><td colspan='5'  style='text-align: center; font-weight: bold'>--Data tidak ditemukan--</td></tr>";
+					} else {
+						$no 	= 1;
+						foreach ($data as $b) {
+					?>
+					<tr>
+						<td  align="center"><?php echo $no;?></td>
+						<td><a href="<?php echo base_URL()?>index.php/admin/kontrak/edt/<?php echo $b->id_kontrak; ?>"><?php echo $b->uraian_kontrak;?></a></td>
+						<td  align="center"><?php echo $b->rekanan; ?></td>
+						<td  align="center"><?php echo $b->nilai_bruto;?></td>
+						<td  align="center"><?php echo tgl_jam_sql($b->tgl_spk);?></td>
+						<td  align="center"><?php echo $b->no_spk;?></td>
+						<td  align="center"><?php echo tgl_jam_sql($b->bastp);?></td>
+						<td  align="center"><?php echo $b->no_bast;?></td>
+						<td  align="center"><?php echo tgl_jam_sql($b->tgl_daftar_adk);?></td>
+						<td  align="center"><?php echo tgl_jam_sql($b->tgl_maju_spm);?></td>
+						<td class="ctr">
+							<div class="btn-group">
+								<a href="<?php echo base_URL()?>index.php/admin/kontrak/edt/<?php echo $b->id_kontrak; ?>" class="btn btn-success btn-sm" title="Edit Data"><i class="icon-edit icon-white"> </i> Edt</a>
+								<?php
+								$id_delete =$b->id_kontrak ;
+								?>
+								<a href="#" class="open_modal btn btn-warning btn-sm" id="<?php echo $id_delete ;?>"><i class="icon-trash icon-remove"></i> Del</a>		
+							</div>	
+						</td>
+						<?php
+						if($this->session->userdata('admin_user') == "atas" && $b->flag_konfirm=='2')
+						{
+						$id_konfirm=$b->id_kontrak;
+						?>
+						<td class="ctr">
+							<div class="btn-group">
+								<a href="#" class="view_modal btn btn-info btn-sm"  id="<?php echo $id_konfirm;?>" title="Konfirmasi Data"><i class="icon-check icon-white"> </i> Konfirmasi</a>
+							</div>	
+						</td>
+						<?php
+						}
+						?>
+					</tr>
+					<?php 
+						$no++;
+						}
+					}
+					?>
+				</tbody>
+			</table>
+
+	    </div>
+
+	
+	<center><ul class="pagination"><?php echo $pagi; ?></ul></center>
+	
+
+	    </div>
+        <div class="scroll tab-pane <?php echo $tab==2?"active":"" ?> " id="spk"><br>
+				<?php
+				$tab=2;
+				?>
+				<ul class="nav navbar-nav">
+					<a href="<?php echo base_URL(); ?>index.php/admin/kontrak/add/1" class="btn btn-danger"><i class="icon-plus-sign icon-white"> </i> Tambah Kontrak</a>
+				</ul>
+				
+				<ul class="nav navbar-nav navbar-right">
+					<form class="navbar-form navbar-left" method="post" action="<?php echo base_URL(); ?>index.php/admin/kontrak/cari">
+						<input type="text" class="form-control" name="q" style="width: 200px" placeholder="Kata kunci pencarian ..." required>
+						<button type="submit" class="btn btn-danger"><i class="icon-search icon-white"> </i> Cari</button>
+					</form>
+				</ul>
+			<br>
+	   		<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th width="5%">No.</th>
+						<th width="15%">Uraian Kontrak</th>
+						<th width="10%">Rekanan</th>
+						<th width="10%">Nilai Bruto</th>
+						<th width="10%">Tanggal SPK</th>
+						<th width="10%">No SPK</th>
+						<th width="10%">BASTP</th>
+						<th width="10%">No BASTP</th>
+						<th width="10%">Tgl Daftar ADK</th>
+						<th width="10%">Tgl Maju SPM</th>
+						<th width="15%">Action</th>
+						<?php
+						if ($this->session->userdata('admin_user') == "atas")
+						{
+						?>
+							<th width="10%">Konfirmasi Selesai</th>
+						<?php
+						}
+						?>
+					</tr>
+				</thead>
+				<tbody>
+					<?php 
+					if (empty($data)) {
+						echo "<tr><td colspan='5'  style='text-align: center; font-weight: bold'>--Data tidak ditemukan--</td></tr>";
+					} else {
+						$no 	= 1;
+						foreach ($dataspk as $b) {
+					?>
+					<tr>
+						<td  align="center"><?php echo $no;?></td>
+						<td><a href="<?php echo base_URL()?>index.php/admin/kontrak/edt/<?php echo $b->id_kontrak; ?>"><?php echo $b->uraian_kontrak;?></a></td>
+						<td  align="center"><?php echo $b->rekanan; ?></td>
+						<td  align="center"><?php echo $b->nilai_bruto;?></td>
+						<td  align="center"><?php echo tgl_jam_sql($b->tgl_spk);?></td>
+						<td  align="center"><?php echo $b->no_spk;?></td>
+						<td  align="center"><?php echo tgl_jam_sql($b->bastp);?></td>
+						<td  align="center"><?php echo $b->no_bast;?></td>
+						<td  align="center"><?php echo tgl_jam_sql($b->tgl_daftar_adk);?></td>
+						<td  align="center"><?php echo tgl_jam_sql($b->tgl_maju_spm);?></td>
+						<td class="ctr">
+							<div class="btn-group">
+								<a href="<?php echo base_URL()?>index.php/admin/kontrak/edt/<?php echo $b->id_kontrak; ?>" class="btn btn-success btn-sm" title="Edit Data"><i class="icon-edit icon-white"> </i> Edt</a>
+								<?php
+								$id_delete =$b->id_kontrak ;
+								?>
+								<a href="#" class="open_modal btn btn-warning btn-sm" id="<?php echo $id_delete ;?>"><i class="icon-trash icon-remove"></i> Del</a>		
+							</div>	
+						</td>
+						<?php
+						if($this->session->userdata('admin_user') == "atas" && $b->flag_konfirm=='2')
+						{
+						$id_konfirm=$b->id_kontrak;
+						?>
+						<td class="ctr">
+							<div class="btn-group">
+								<a href="#" class="view_modal btn btn-info btn-sm"  id="<?php echo $id_konfirm;?>" title="Konfirmasi Data"><i class="icon-check icon-white"> </i> Konfirmasi</a>
+							</div>	
+						</td>
+						<?php
+						}
+						?>
+					</tr>
+					<?php 
+						$no++;
+						}
+					}
+					?>
+				</tbody>
+			</table>
+
+	    </div>
+
+	
+	<center><ul class="pagination"><?php echo $pagi; ?></ul></center>
+	
+		
+		</div>
+        <div class="scroll tab-pane <?php echo $tab==3?"active":"" ?>" id="bast"><br>
+				<?php
+				$tab=3;
+				?>
+				<ul class="nav navbar-nav">
+					<a href="<?php echo base_URL(); ?>index.php/admin/kontrak/add/1" class="btn btn-danger"><i class="icon-plus-sign icon-white"> </i> Tambah Kontrak</a>
+				</ul>
+				
+				<ul class="nav navbar-nav navbar-right">
+					<form class="navbar-form navbar-left" method="post" action="<?php echo base_URL(); ?>index.php/admin/kontrak/cari">
+						<input type="text" class="form-control" name="q" style="width: 200px" placeholder="Kata kunci pencarian ..." required>
+						<button type="submit" class="btn btn-danger"><i class="icon-search icon-white"> </i> Cari</button>
+					</form>
+				</ul>
+			<br>
+	   		<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th width="5%">No.</th>
+						<th width="15%">Uraian Kontrak</th>
+						<th width="10%">Rekanan</th>
+						<th width="10%">Nilai Bruto</th>
+						<th width="10%">Tanggal SPK</th>
+						<th width="10%">No SPK</th>
+						<th width="10%">BASTP</th>
+						<th width="10%">No BASTP</th>
+						<th width="10%">Tgl Daftar ADK</th>
+						<th width="10%">Tgl Maju SPM</th>
+						<th width="15%">Action</th>
+						<?php
+						if ($this->session->userdata('admin_user') == "atas")
+						{
+						?>
+							<th width="10%">Konfirmasi Selesai</th>
+						<?php
+						}
+						?>
+					</tr>
+				</thead>
+				<tbody>
+					<?php 
+					if (empty($databast)) {
+						echo "<tr><td colspan='5'  style='text-align: center; font-weight: bold'>--Data tidak ditemukan--</td></tr>";
+					} else {
+						$no 	= 1;
+						foreach ($data as $b) {
+					?>
+					<tr>
+						<td  align="center"><?php echo $no;?></td>
+						<td><a href="<?php echo base_URL()?>index.php/admin/kontrak/edt/<?php echo $b->id_kontrak; ?>"><?php echo $b->uraian_kontrak;?></a></td>
+						<td  align="center"><?php echo $b->rekanan; ?></td>
+						<td  align="center"><?php echo $b->nilai_bruto;?></td>
+						<td  align="center"><?php echo tgl_jam_sql($b->tgl_spk);?></td>
+						<td  align="center"><?php echo $b->no_spk;?></td>
+						<td  align="center"><?php echo tgl_jam_sql($b->bastp);?></td>
+						<td  align="center"><?php echo $b->no_bast;?></td>
+						<td  align="center"><?php echo tgl_jam_sql($b->tgl_daftar_adk);?></td>
+						<td  align="center"><?php echo tgl_jam_sql($b->tgl_maju_spm);?></td>
+						<td class="ctr">
+							<div class="btn-group">
+								<a href="<?php echo base_URL()?>index.php/admin/kontrak/edt/<?php echo $b->id_kontrak; ?>" class="btn btn-success btn-sm" title="Edit Data"><i class="icon-edit icon-white"> </i> Edt</a>
+								<?php
+								$id_delete =$b->id_kontrak ;
+								?>
+								<a href="#" class="open_modal btn btn-warning btn-sm" id="<?php echo $id_delete ;?>"><i class="icon-trash icon-remove"></i> Del</a>		
+							</div>	
+						</td>
+						<?php
+						if($this->session->userdata('admin_user') == "atas" && $b->flag_konfirm=='2')
+						{
+						$id_konfirm=$b->id_kontrak;
+						?>
+						<td class="ctr">
+							<div class="btn-group">
+								<a href="#" class="view_modal btn btn-info btn-sm"  id="<?php echo $id_konfirm;?>" title="Konfirmasi Data"><i class="icon-check icon-white"> </i> Konfirmasi</a>
+							</div>	
+						</td>
+						<?php
+						}
+						?>
+					</tr>
+					<?php 
+						$no++;
+						}
+					}
+					?>
+				</tbody>
+			</table>
+
+	    </div>
+
+	
+	<center><ul class="pagination"><?php echo $pagi; ?></ul></center>
+		
+		
+		</div>
+        <div class="scroll tab-pane <?php echo $tab==4?"active":"" ?>" id="selsai"><br>
+				<?php
+				$tab=4;
+				?>
+				<ul class="nav navbar-nav">
+					<a href="<?php echo base_URL(); ?>index.php/admin/kontrak/add/1" class="btn btn-danger"><i class="icon-plus-sign icon-white"> </i> Tambah Kontrak</a>
+				</ul>
+				
+				<ul class="nav navbar-nav navbar-right">
+					<form class="navbar-form navbar-left" method="post" action="<?php echo base_URL(); ?>index.php/admin/kontrak/cari">
+						<input type="text" class="form-control" name="q" style="width: 200px" placeholder="Kata kunci pencarian ..." required>
+						<button type="submit" class="btn btn-danger"><i class="icon-search icon-white"> </i> Cari</button>
+					</form>
+				</ul>
+			<br>
+	   		<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th width="5%">No.</th>
+						<th width="15%">Uraian Kontrak</th>
+						<th width="10%">Rekanan</th>
+						<th width="10%">Nilai Bruto</th>
+						<th width="10%">Tanggal SPK</th>
+						<th width="10%">No SPK</th>
+						<th width="10%">BASTP</th>
+						<th width="10%">No BASTP</th>
+						<th width="10%">Tgl Daftar ADK</th>
+						<th width="10%">Tgl Maju SPM</th>
+						<th width="15%">Action</th>
+						<?php
+						if ($this->session->userdata('admin_user') == "atas")
+						{
+						?>
+							<th width="10%">Konfirmasi Selesai</th>
+						<?php
+						}
+						?>
+					</tr>
+				</thead>
+				<tbody>
+					<?php 
+					if (empty($dataselesai)) {
+						echo "<tr><td colspan='5'  style='text-align: center; font-weight: bold'>--Data tidak ditemukan--</td></tr>";
+					} else {
+						$no 	= 1;
+						foreach ($data as $b) {
+					?>
+					<tr>
+						<td  align="center"><?php echo $no;?></td>
+						<td><a href="<?php echo base_URL()?>index.php/admin/kontrak/edt/<?php echo $b->id_kontrak; ?>"><?php echo $b->uraian_kontrak;?></a></td>
+						<td  align="center"><?php echo $b->rekanan; ?></td>
+						<td  align="center"><?php echo $b->nilai_bruto;?></td>
+						<td  align="center"><?php echo tgl_jam_sql($b->tgl_spk);?></td>
+						<td  align="center"><?php echo $b->no_spk;?></td>
+						<td  align="center"><?php echo tgl_jam_sql($b->bastp);?></td>
+						<td  align="center"><?php echo $b->no_bast;?></td>
+						<td  align="center"><?php echo tgl_jam_sql($b->tgl_daftar_adk);?></td>
+						<td  align="center"><?php echo tgl_jam_sql($b->tgl_maju_spm);?></td>
+						<td class="ctr">
+							<div class="btn-group">
+								<a href="<?php echo base_URL()?>index.php/admin/kontrak/edt/<?php echo $b->id_kontrak; ?>" class="btn btn-success btn-sm" title="Edit Data"><i class="icon-edit icon-white"> </i> Edt</a>
+								<?php
+								$id_delete =$b->id_kontrak ;
+								?>
+								<a href="#" class="open_modal btn btn-warning btn-sm" id="<?php echo $id_delete ;?>"><i class="icon-trash icon-remove"></i> Del</a>		
+							</div>	
+						</td>
+						<?php
+						if($this->session->userdata('admin_user') == "atas" && $b->flag_konfirm=='2')
+						{
+						$id_konfirm=$b->id_kontrak;
+						?>
+						<td class="ctr">
+							<div class="btn-group">
+								<a href="#" class="view_modal btn btn-info btn-sm"  id="<?php echo $id_konfirm;?>" title="Konfirmasi Data"><i class="icon-check icon-white"> </i> Konfirmasi</a>
+							</div>	
+						</td>
+						<?php
+						}
+						?>
+					</tr>
+					<?php 
+						$no++;
+						}
+					}
+					?>
+				</tbody>
+			</table>
+
+	    </div>
+
+	
+	<center><ul class="pagination"><?php echo $pagi; ?></ul></center>
+	
+	
+		
+	
+<!-- Modal Popup untuk Delete--> 
+<div id="ModalDelete" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+</div>
+<!-- Javascript untuk popup modal Edit--> 
+<script type="text/javascript">
+   $(document).ready(function () {
+   $(".open_modal").click(function(e) {
+      var m = $(this).attr("id");
+		   $.ajax({
+    			   url: "<?php echo base_url(); ?>index.php/admin/kontrak/del/",
+    			   type: "GET",
+    			   data : {delete_id: m,},
+    			   success: function (ajaxData){
+      			   $("#ModalDelete").html(ajaxData);
+      			   $("#ModalDelete").modal('show',{backdrop: 'true'});
+      		   }
+    		   });
+        });
+      });
+</script>
+
+<!-- Modal Popup untuk Edit--> 
+<div id="ModalEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+</div>
+<!-- Javascript untuk popup modal Edit--> 
+<script type="text/javascript">
+   $(document).ready(function () {
+   $(".view_modal").click(function(e) {
+      var m = $(this).attr("id");
+		   $.ajax({
+    			   url: "<?php echo base_url(); ?>index.php/admin/konfirmasi/edt/",
+    			   type: "GET",
+    			   data : {konfirmasi_id: m,},
+    			   success: function (ajaxData){
+      			   $("#ModalEdit").html(ajaxData);
+      			   $("#ModalEdit").modal('show',{backdrop: 'true'});
+      		   }
+    		   });
+        });
+      });
+</script>	
+
+
+
+	
+
+
