@@ -54,281 +54,328 @@ $uri5 = $this->uri->segment(5);
                       <!-- Custom Tabs -->
                       <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs">
-                          <li class="active"><a href="#tab_1" data-toggle="tab">Mingguan</a></li>
-                          <li><a href="#tab_2" data-toggle="tab">Bulanan</a></li>
+                          <li><a href="#tab_1" data-toggle="tab">Mingguan</a></li>
+                          <li class="active"><a href="#tab_2" data-toggle="tab">Bulanan</a></li>
                           
                           <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
                         </ul>
                         <div class="tab-content">
-                            <div class="tab-pane active" id="tab_1">
+                            <div class="tab-pane" id="tab_1">
                                 <div class="panel-body">
+                                <?php
+                                for($i = 0; $i < getMinggu($uri4)[0]; $i++){
+                                    $Friday    = date("Y-m-d", strtotime("this friday ".date("d-m-Y")));
+                                ?>
+                                    <br>
                                     <div class="panel panel-warning">
-                                        <div class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="" aria-expanded="true" aria-controls="collapseOne" style="cursor:pointer;">
-                                        <b>
-                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="" aria-expanded="true" aria-controls="collapseOne">
-                                            <?php echo "Minggu 1 ( )"; ?>
-                                            </a>
-                                        </b>
+                                        <div class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $i; ?>" aria-expanded="true" aria-controls="collapseOne" style="cursor:pointer;">
+                                            <b>
+                                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $i; ?>" aria-expanded="true" aria-controls="collapseOne">
+                                                    <?php echo "Minggu ".($i+1)." ( ".tgl_jam_sql(getMinggu($uri4)[1][$i]).")"; ?>
+                                                </a>
+                                            </b>
+                                        </div>
+                                        <?php
+                                        if($Friday == getMinggu($uri4)[1][$i]){
+                                            ?>
+                                            <div id="collapse<?php echo $i; ?>" class="accordion-collapse collapse show" role="tabpanel" aria-labelledby="headingOne">
+                                            <?php
+                                        }else{
+                                            ?>
+                                            <div id="collapse<?php echo $i; ?>" class="accordion-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                            <?php
+                                        }
+                                        ?>
+                                        
+                                        <div class="panel-body">
+                                            <div style="max-height:650px; overflow:auto">
+                                                <table class="table table-striped table-hover">
+                                                    <thead style="position:sticky; top: 0">
+                                                        <tr style="height:60px">
+                                                            <th width="4%" style="vertical-align:middle">No.</th>
+                                                            <th width="14%" style="vertical-align:middle">Tim Kerja</th>
+                                                            <th width="26%" style="vertical-align:middle">Nama Kegiatan</th>
+                                                            <th width="10%" style="vertical-align:middle">Batas Waktu</th>
+                                                            <th width="10%" style="vertical-align:middle">Satuan</th>
+                                                            <th width="5%" style="vertical-align:middle">Target</th>
+                                                            <th width="5%" style="vertical-align:middle">Realisasi</th>
+                                                            <th width="13%" style="vertical-align:middle">Persentase</th>
+                                                            <th width="13%" style="vertical-align:middle">Persentase Kumulatif</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php
+                                                        $targetKum              = 0;
+                                                        $realKum                = 0;
+                                                        $no                     = 1;
+                                                        $persen                 = 0.00;
+                                                        $flag                   = 1;
+                                                        $targetKumAll           = 0;
+                                                        $realKumAll             = 0;
+                                                        $persenAll              = 0.00;
+                                                        $countflag              = 0;
+                                                        foreach($data as $dat){
+                                                            //echo $coba;
+                                                            if($dat->batas_minggu <= getMinggu($uri4)[1][$i]){
+                                                                if($dat->batas_minggu == getMinggu($uri4)[1][$i]){
+                                                                    if($dat->id_kab == "6571"){
+                                                                        $targetKum      = $targetKum + $dat->target;
+                                                                        $realKum        = $realKum + $dat->realisasi;
+                                                                        $targetKumAll   = $targetKumAll + $dat->target;
+                                                                        $realKumAll     = $realKumAll + $dat->realisasi;
+                                                                        ?>
+                                                                        <tr>
+                                                                            <td align="center"><?php echo $no;?></td>
+                                                                            <td><?php echo $dat->tim;?></td>
+                                                                            <td data-container="body" data-toggle="tooltip" data-placement="bottom" title="<?php echo 'Dasar :'.$dat->dasar_surat ;?>">
+                                                                                <a href="<?php echo base_URL()?>index.php/admin/unitkerjaprov/view/<?php echo $dat->id_jeniskegiatan."/".$dat->minggu_ke."/".$dat->batas_minggu."/"; ?>">
+                                                                                    <?php echo $dat->nmkegiatan;
+                                                                                    if($flag == 2){
+                                                                                        ?>
+                                                                                        <span class="badge rounded-pill text-dark" style="background-color:#dc3545">New Real</span>
+                                                                                        <?php
+                                                                                    }
+                                                                                    ?>
+                                                                                </a>
+                                                                            </td>
+                                                                            <td align="center"><?php echo tgl_jam_sql($dat->batas_waktu);?></td>
+                                                                            <td align="center"><?php echo $dat->satuan;?></td>
+                                                                            <td align="center"><?php echo $targetKum;?></td>
+                                                                            <td align="center"><?php echo $realKum;?></td>
+                                                                            <td align="center">
+                                                                                <?php 
+                                                                                if($targetKum == 0 && $realKum != 0) {
+                                                                                    $persen = 100.00;
+                                                                                } elseif($targetKum != 0) {
+                                                                                    $persen = round($realKum / $targetKum * 100.00, 2);
+                                                                                }
+
+                                                                                $progressClass = '';
+                                                                                if ($persen >= 0 && $persen < 50) {
+                                                                                    $progressClass = 'progress-bar-danger';
+                                                                                } elseif ($persen >= 50 && $persen < 90) {
+                                                                                    $progressClass = 'progress-bar-warning';
+                                                                                } else {
+                                                                                    $progressClass = 'progress-bar-success';
+                                                                                }
+                                                                                ?>
+
+                                                                                <div class="progress">
+                                                                                    <div class="progress-bar <?php echo $progressClass; ?>" role="progressbar" aria-valuenow="<?php echo $persen; ?>" aria-valuemin="0" aria-valuemax="100" style="<?php echo 'width: '.$persen."%"; ?>; max-width:100%; ">
+                                                                                        <?php echo $persen." %"; ?>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <?php
+                                                                                $persen = 0.00;
+                                                                                ?>
+
+                                                                            </td>
+                                                                            <td align="center">
+                                                                                <?php
+                                                                                if($targetKumAll == 0){
+                                                                                    if($realKumAll == 0){
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        $persenAll  = '100.00';
+                                                                                    }
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    $persenAll = round($realKumAll/$targetKumAll*100.00,2);
+                                                                                }
+                                                                                if($persenAll >= 0 && $persenAll < 50){
+                                                                                ?>
+                                                                                    <div class="progress">
+                                                                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="<?php echo $persenAll; ?>" aria-valuemin="0" aria-valuemax="100" style="<?php echo 'width: '.$persenAll."%"; ?>; max-width:100%; ">
+                                                                                            <?php echo $persenAll." %"; ?>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                <?php
+                                                                                }elseif($persenAll >= 50 && $persenAll < 90){
+                                                                                ?>
+                                                                                    <div class="progress">
+                                                                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<?php echo $persenAll; ?>" aria-valuemin="0" aria-valuemax="100" style="<?php echo 'width: '.$persenAll."%"; ?>; max-width:100%; ">
+                                                                                            <?php echo $persenAll." %"; ?>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                <?php
+                                                                                }else{
+                                                                                ?>
+                                                                                    <div class="progress">
+                                                                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<?php echo $persenAll; ?>" aria-valuemin="0" aria-valuemax="100" style="<?php echo 'width: '.$persenAll."%"; ?>; max-width:100%; ">
+                                                                                            <?php echo $persenAll." %"; ?>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                <?php
+                                                                                }
+                                                                                $persenAll     = 0.00;
+                                                                                ?>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <?php
+                                                                        $targetKum              = 0;
+                                                                        $realKum                = 0;
+                                                                        $targetKumAll           = 0;
+                                                                        $realKumAll             = 0;
+                                                                        $flag                   = 1;
+                                                                        $countflag              = 0;
+                                                                        $no++;
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        $targetKum      = $targetKum + $dat->target;
+                                                                        $realKum        = $realKum + $dat->realisasi;
+                                                                        $targetKumAll   = $targetKumAll + $dat->target;
+                                                                        $realKumAll     = $realKumAll + $dat->realisasi;
+                                                                        if($dat->flag_konfirm == 2){
+                                                                            $flag               = $dat->flag_konfirm;
+                                                                            $countflag          = $countflag + 1;
+                                                                        }
+                                                                    }
+                                                                    
+                                                                }
+                                                                else
+                                                                {
+                                                                    $targetKumAll   = $targetKumAll + $dat->target;
+                                                                    $realKumAll     = $realKumAll + $dat->realisasi;
+                                                                    
+                                                                }
+                                                            }
+                                                        };
+                                                        ?>
+                                                        
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="panel-body">
-                                    <div style="max-height:650px; overflow:auto">
-                                        <table class="table table-striped table-hover">
-                                            <thead style="position:sticky; top: 0">
-                                                <tr style="height:60px">
-                                                    <th width="4%" style="vertical-align:middle">No.</th>
-                                                    <th width="14%" style="vertical-align:middle">Tim Kerja</th>
-                                                    <th width="26%" style="vertical-align:middle">Nama Kegiatan</th>
-                                                    <th width="10%" style="vertical-align:middle">Batas Waktu</th>
-                                                    <th width="10%" style="vertical-align:middle">Satuan</th>
-                                                    <th width="5%" style="vertical-align:middle">Target</th>
-                                                    <th width="5%" style="vertical-align:middle">Realisasi</th>
-                                                    <th width="13%" style="vertical-align:middle">Persentase</th>
-                                                    <th width="13%" style="vertical-align:middle">Persentase Kumulatif</th>
-                                                </tr>
-                                            </thead>
-                                        </table>
-                                    </div>
-                                </div>
+                                <?php } ?>
                             </div>
-                        </div>
-                          <!-- /.tab-pane -->
-                          <div class="tab-pane" id="tab_2">
-                            <div class="panel-body">
-                            The European languages are members of the same family. Their separate existence is a myth.
-                            For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ
-                            in their grammar, their pronunciation and their most common words. Everyone realizes why a
-                            new common language would be desirable: one could refuse to pay expensive translators. To
-                            achieve this, it would be necessary to have uniform grammar, pronunciation and more common
-                            words. If several languages coalesce, the grammar of the resulting language is more simple
-                            and regular than that of the individual languages.
                             </div>
-                          </div>
-                          <!-- /.tab-pane -->
+                            <!-- /.tab-pane -->
+                            <div class="tab-pane active" id="tab_2">
+                                <?php foreach($datatim as $tim){
+                                    if ($this->session->userdata('admin_nip') == '6500' || $this->session->userdata('admin_nip') == $tim->id_tim || $this->session->userdata('admin_level') == "pemantau")
+                                    { ?>
+                                        <br>
+                                        <div class="panel-body">
+                                            <div style="max-height:650px; overflow:auto">
+                                                <table class="table table-striped table-hover">
+                                                    <thead style="position:sticky; top: 0">
+                                                        <tr style="height:60px">
+                                                            <th width="5%" rowspan="2" style="vertical-align:middle">No.</th>
+                                                            <th width="28%" rowspan="2" style="vertical-align:middle">Nama Kegiatan</th>
+                                                            <th width="10%" colspan="2" style="vertical-align:middle">Bulanan</th>
+                                                            <th width="1%" rowspan="2" style="vertical-align:middle"></th>
+                                                            <th width="10%" colspan="2" style="vertical-align:middle">Kumulatif</th>
+                                                            <th width="20%" rowspan="2" style="vertical-align:middle">Persentase Kumulatif</th>
+                                                            <th width="10%" rowspan="2" style="vertical-align:middle">Satuan</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="5%"style="vertical-align:middle">T</th>
+                                                            <th width="5%"style="vertical-align:middle">R</th>
+                                                            <th width="5%"style="vertical-align:middle">T</th>
+                                                            <th width="5%"style="vertical-align:middle">R</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php
+                                                        $no             = 1;
+                                                        $targetkum      = 0;
+                                                        $realkum        = 0;
+                                                        $idkegiatan     = $data2[0]->id_jeniskegiatan;
+                                                        for($i = 0; $i < count($data2); $i++){
+                                                            if($i == (count($data2)-1)){
+                                                            $targetkum += $data2[$i]->target_mingguan;
+                                                            $realkum = $realkum + $data2[$i]->real_mingguan;
+                                                            ?>
+                                                            <tr>
+                                                                <td align="center"><?php echo $no; ?></td>
+                                                                <td><?php echo $data2[$i]->nmkegiatan; ?></td>
+                                                                <td align="center"><?php echo $targetkum; ?></td>
+                                                                <td align="center"><?php echo $realkum; ?></td>
+                                                                <td align="center"></td>
+                                                                <td align="center"><?php echo $data2[$i]->total_target; ?></td>
+                                                                <td align="center"><?php echo $data2[$i]->total_realisasi; ?></td>
+                                                                <td align="center">
+                                                                    <?php
+                                                                    $persen = ($total_target == 0) ? (($total_realisasi == 0) ? null : 100.00) : round($total_realisasi / $total_target * 100.00, 2);
+                                                                    $progressClass = ($persen >= 0 && $persen < 50) ? 'progress-bar-danger' : (($persen >= 50 && $persen < 90) ? 'progress-bar-warning' : 'progress-bar-success');
+                                                                    ?>
+
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar <?php echo $progressClass; ?>" role="progressbar" aria-valuenow="<?php echo $persen; ?>" aria-valuemin="0" aria-valuemax="100" style="<?php echo 'width: '.$persen."%"; ?>; max-width:100%; ">
+                                                                            <?php echo $persen . " %"; ?>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td align="center"><?php echo $data2[$i]->nama_satuan; ?></td>
+                                                            </tr>
+                                                            <?php
+                                                            }else{
+                                                                if($idkegiatan == $data2[$i+1]->id_jeniskegiatan)
+                                                                {
+                                                                    $targetkum  += $data2[$i]->target_mingguan;
+                                                                    $realkum    += $data2[$i]->real_mingguan;    
+                                                                }
+                                                                else
+                                                                {
+                                                                    $targetkum  += $data2[$i]->target_mingguan;
+                                                                    $realkum    += $data2[$i]->real_mingguan;
+                                                                ?>
+                                                                    <tr>
+                                                                        <td align="center"><?php echo $no; ?></td>
+                                                                        <td><?php echo $data2[$i]->nmkegiatan; ?></td>
+                                                                        <td align="center"><?php echo $targetkum; ?></td>
+                                                                        <td align="center"><?php echo $realkum; ?></td>
+                                                                        <td align="center"></td>
+                                                                        <td align="center"><?php echo $data2[$i]->total_target; ?></td>
+                                                                        <td align="center"><?php echo $data2[$i]->total_realisasi; ?></td>
+                                                                        <td align="center">
+                                                                            <?php
+                                                                            $persen = ($data2[$i]->total_target == 0) ? ($data2[$i]->total_realisasi == 0 ? null : 100.00) : round($data2[$i]->total_realisasi / $data2[$i]->total_target * 100.00, 2);
+                                                                            $progressClass = ($persen >= 0 && $persen < 50) ? 'progress-bar-danger' : (($persen >= 50 && $persen < 90) ? 'progress-bar-warning' : 'progress-bar-success');
+                                                                            ?>
+                                                                            <div class="progress">
+                                                                                <div class="progress-bar <?php echo $progressClass; ?>" role="progressbar" aria-valuenow="<?php echo $persen; ?>" aria-valuemin="0" aria-valuemax="100" style="<?php echo 'width: '.$persen."%"; ?>; max-width:100%; ">
+                                                                                    <?php echo $persen . " %"; ?>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td align="center"><?php echo $data2[$i]->nama_satuan; ?></td>
+                                                                    </tr>
+                                                                    <?php
+                                                                    $targetkum  = 0;
+                                                                    $realkum    = 0;
+                                                                    $idkegiatan = $data2[$i+1]->id_jeniskegiatan;
+                                                                    $no++;
+                                                                }
+                                                            
+                                                            }}
+                                                            if($no == 1){
+                                                                echo "<tr><td colspan='6'  style='text-align: center; font-weight: bold'>--Tidak Ada Kegiatan--</td></tr>";
+                                                            }
+                                                        ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    <?php
+                                    }
+                                }
+                                ?>
+                            </div>
+                            <!-- /.tab-pane -->
                         </div>
                         <!-- /.tab-content -->
                       </div>
                       <!-- nav-tabs-custom -->
                     </div>
                     <!-- /.col -->
-
-                    
                 </div>
-                <!-- ACORDION PER MINGGU -->
-                <?php
-                for($i = 0; $i < getMinggu($uri4)[0]; $i++){
-                    $Friday    = date("Y-m-d", strtotime("this friday ".date("d-m-Y")));
-                    ?>
-                    <br>
-                    <div class="panel panel-warning">
-                        <div class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $i; ?>" aria-expanded="true" aria-controls="collapseOne" style="cursor:pointer;">
-                            <b>
-								<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $i; ?>" aria-expanded="true" aria-controls="collapseOne">
-									<?php echo "Minggu ".($i+1)." ( ".tgl_jam_sql(getMinggu($uri4)[1][$i]).")"; ?>
-								</a>
-							</b>
-                        </div>
-                        <?php
-                        if($Friday == getMinggu($uri4)[1][$i]){
-                            ?>
-                            <div id="collapse<?php echo $i; ?>" class="accordion-collapse collapse show" role="tabpanel" aria-labelledby="headingOne">
-                            <?php
-                        }else{
-                            ?>
-                            <div id="collapse<?php echo $i; ?>" class="accordion-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                            <?php
-                        }
-                        ?>
-                        
-                            <div class="panel-body">
-                                <div style="max-height:650px; overflow:auto">
-                                    <table class="table table-striped table-hover">
-                                        <thead style="position:sticky; top: 0">
-                                            <tr style="height:60px">
-                                                <th width="4%" style="vertical-align:middle">No.</th>
-                                                <th width="14%" style="vertical-align:middle">Tim Kerja</th>
-                                                <th width="26%" style="vertical-align:middle">Nama Kegiatan</th>
-                                                <th width="10%" style="vertical-align:middle">Batas Waktu</th>
-                                                <th width="10%" style="vertical-align:middle">Satuan</th>
-                                                <th width="5%" style="vertical-align:middle">Target</th>
-                                                <th width="5%" style="vertical-align:middle">Realisasi</th>
-                                                <th width="13%" style="vertical-align:middle">Persentase</th>
-                                                <th width="13%" style="vertical-align:middle">Persentase Kumulatif</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                            $targetKum              = 0;
-                                            $realKum                = 0;
-                                            $no                     = 1;
-                                            $persen                 = 0.00;
-                                            $flag                   = 1;
-                                            $targetKumAll           = 0;
-                                            $realKumAll             = 0;
-                                            $persenAll              = 0.00;
-                                            $countflag              = 0;
-                                            foreach($data as $dat){
-                                                //echo $coba;
-                                                if($dat->batas_minggu <= getMinggu($uri4)[1][$i]){
-                                                    if($dat->batas_minggu == getMinggu($uri4)[1][$i]){
-                                                        if($dat->id_kab == "6571"){
-                                                            $targetKum      = $targetKum + $dat->target;
-                                                            $realKum        = $realKum + $dat->realisasi;
-                                                            $targetKumAll   = $targetKumAll + $dat->target;
-                                                            $realKumAll     = $realKumAll + $dat->realisasi;
-                                                            ?>
-                                                            <tr>
-                                                                <td align="center"><?php echo $no;?></td>
-                                                                <td><?php echo $dat->tim;?></td>
-                                                                <td data-container="body" data-toggle="tooltip" data-placement="bottom" title="<?php echo 'Dasar :'.$dat->dasar_surat ;?>">
-                                                                    <a href="<?php echo base_URL()?>index.php/admin/unitkerjaprov/view/<?php echo $dat->id_jeniskegiatan."/".$dat->minggu_ke."/".$dat->batas_minggu."/"; ?>">
-                                                                        <?php echo $dat->nmkegiatan;
-                                                                        if($flag == 2){
-                                                                            ?>
-                                                                            <span class="badge rounded-pill text-dark" style="background-color:#dc3545">New Real</span>
-                                                                            <?php
-                                                                        }
-                                                                        ?>
-                                                                    </a>
-                                                                </td>
-                                                                <td align="center"><?php echo tgl_jam_sql($dat->batas_waktu);?></td>
-                                                                <td align="center"><?php echo $dat->satuan;?></td>
-                                                                <td align="center"><?php echo $targetKum;?></td>
-                                                                <td align="center"><?php echo $realKum;?></td>
-                                                                <td align="center">
-                                                                    <?php 
-                                                                    if($targetKum == 0){
-                                                                        if($realKum == 0){
-                                                                            /*if($countflag == 0){
-                                                                                $persen = '0';
-                                                                            }
-                                                                            else
-                                                                            {
-                                                                                $persen = round($countflag/5*100,2);
-                                                                            }*/
-                                                                        }
-                                                                        else
-                                                                        {
-                                                                            $persen     = '100.00';
-                                                                        }
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        $persen = round($realKum/$targetKum*100.00,2);
-                                                                    }
-                                                                    if($persen >= 0 && $persen < 50){
-                                                                    ?>
-                                                                        <div class="progress">
-                                                                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="<?php echo $persen; ?>" aria-valuemin="0" aria-valuemax="100" style="<?php echo 'width: '.$persen."%"; ?>; max-width:100%; ">
-                                                                                <?php echo $persen." %"; ?>
-                                                                            </div>
-                                                                        </div>
-                                                                    <?php
-                                                                    }elseif($persen >= 50 && $persen < 90){
-                                                                    ?>
-                                                                        <div class="progress">
-                                                                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<?php echo $persen; ?>" aria-valuemin="0" aria-valuemax="100" style="<?php echo 'width: '.$persen."%"; ?>; max-width:100%; ">
-                                                                                <?php echo $persen." %"; ?>
-                                                                            </div>
-                                                                        </div>
-                                                                    <?php
-                                                                    }else{
-                                                                    ?>
-                                                                        <div class="progress">
-                                                                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<?php echo $persen; ?>" aria-valuemin="0" aria-valuemax="100" style="<?php echo 'width: '.$persen."%"; ?>; max-width:100%; ">
-                                                                                <?php echo $persen." %"; ?>
-                                                                            </div>
-                                                                        </div>
-                                                                    <?php
-                                                                    }
-                                                                    $persen     = 0.00;
-                                                                    ?>
-                                                                </td>
-                                                                <td align="center">
-                                                                    <?php
-                                                                    if($targetKumAll == 0){
-                                                                        if($realKumAll == 0){
-                                                                        }
-                                                                        else
-                                                                        {
-                                                                            $persenAll  = '100.00';
-                                                                        }
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        $persenAll = round($realKumAll/$targetKumAll*100.00,2);
-                                                                    }
-                                                                    if($persenAll >= 0 && $persenAll < 50){
-                                                                    ?>
-                                                                        <div class="progress">
-                                                                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="<?php echo $persenAll; ?>" aria-valuemin="0" aria-valuemax="100" style="<?php echo 'width: '.$persenAll."%"; ?>; max-width:100%; ">
-                                                                                <?php echo $persenAll." %"; ?>
-                                                                            </div>
-                                                                        </div>
-                                                                    <?php
-                                                                    }elseif($persenAll >= 50 && $persenAll < 90){
-                                                                    ?>
-                                                                        <div class="progress">
-                                                                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<?php echo $persenAll; ?>" aria-valuemin="0" aria-valuemax="100" style="<?php echo 'width: '.$persenAll."%"; ?>; max-width:100%; ">
-                                                                                <?php echo $persenAll." %"; ?>
-                                                                            </div>
-                                                                        </div>
-                                                                    <?php
-                                                                    }else{
-                                                                    ?>
-                                                                        <div class="progress">
-                                                                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<?php echo $persenAll; ?>" aria-valuemin="0" aria-valuemax="100" style="<?php echo 'width: '.$persenAll."%"; ?>; max-width:100%; ">
-                                                                                <?php echo $persenAll." %"; ?>
-                                                                            </div>
-                                                                        </div>
-                                                                    <?php
-                                                                    }
-                                                                    $persenAll     = 0.00;
-                                                                    ?>
-                                                                </td>
-                                                            </tr>
-                                                            <?php
-                                                            $targetKum              = 0;
-                                                            $realKum                = 0;
-                                                            $targetKumAll           = 0;
-                                                            $realKumAll             = 0;
-                                                            $flag                   = 1;
-                                                            $countflag              = 0;
-                                                            $no++;
-                                                        }
-                                                        else
-                                                        {
-                                                            $targetKum      = $targetKum + $dat->target;
-                                                            $realKum        = $realKum + $dat->realisasi;
-                                                            $targetKumAll   = $targetKumAll + $dat->target;
-                                                            $realKumAll     = $realKumAll + $dat->realisasi;
-                                                            if($dat->flag_konfirm == 2){
-                                                                $flag               = $dat->flag_konfirm;
-                                                                $countflag          = $countflag + 1;
-                                                            }
-                                                        }
-                                                        
-                                                    }
-                                                    else
-                                                    {
-                                                        $targetKumAll   = $targetKumAll + $dat->target;
-                                                        $realKumAll     = $realKumAll + $dat->realisasi;
-                                                        
-                                                    }
-                                                }
-                                            };
-                                            ?>
-                                            
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <?php
-                }
-                ?>
-                <!-- AKHIR ACORDION PER MINGGU -->
             </div>
         </div>
     </div>
