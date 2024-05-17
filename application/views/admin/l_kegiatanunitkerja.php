@@ -286,81 +286,31 @@ $uri5 = $this->uri->segment(5);
                                                         $no             = 1;
                                                         $targetkum      = 0;
                                                         $realkum        = 0;
-                                                        $idkegiatan     = $data2[0]->id_jeniskegiatan;
-                                                        for($i = 0; $i < count($data2); $i++){
-                                                            if($i == (count($data2)-1)){
-                                                            $targetkum += $data2[$i]->target_mingguan;
-                                                            $realkum = $realkum + $data2[$i]->real_mingguan;
-                                                            ?>
-                                                            <tr>
-                                                                <td align="center"><?php echo $no; ?></td>
-                                                                <td><?php echo $data2[$i]->nmkegiatan; ?></td>
-                                                                <td align="center"><?php echo $targetkum; ?></td>
-                                                                <td align="center"><?php echo $realkum; ?></td>
-                                                                <td align="center"></td>
-                                                                <td align="center"><?php echo $data2[$i]->total_target; ?></td>
-                                                                <td align="center"><?php echo $data2[$i]->total_realisasi; ?></td>
-                                                                <td align="center">
-                                                                    <?php
-                                                                    $targetKum = $data2[$i]->target;
-                                                                    $realKum = $data2[$i]->realisasi;
-                                                                    $persen = ($targetKum == 0) ? (($realKum == 0) ? null : 100.00) : round($realKum / $targetKum * 100.00, 2);
-                                                                    $progressClass = ($persen >= 0 && $persen < 50) ? 'progress-bar-danger' : (($persen >= 50 && $persen < 90) ? 'progress-bar-warning' : 'progress-bar-success');
-                                                                    ?>
-
-                                                                    <div class="progress">
-                                                                        <div class="progress-bar <?php echo $progressClass; ?>" role="progressbar" aria-valuenow="<?php echo $persen; ?>" aria-valuemin="0" aria-valuemax="100" style="<?php echo 'width: '.$persen."%"; ?>; max-width:100%; ">
-                                                                            <?php echo $persen . " %"; ?>
-                                                                        </div>
-                                                                    </div>
-                                                                </td>
-                                                                <td align="center"><?php echo $data2[$i]->nama_satuan; ?></td>
-                                                            </tr>
-                                                            <?php
-                                                            }else{
-                                                                if($idkegiatan == $data2[$i+1]->id_jeniskegiatan)
-                                                                {
-                                                                    $targetkum  += $data2[$i]->target_mingguan;
-                                                                    $realkum    += $data2[$i]->real_mingguan;    
-                                                                }
-                                                                else
-                                                                {
-                                                                    $targetkum  += $data2[$i]->target_mingguan;
-                                                                    $realkum    += $data2[$i]->real_mingguan;
+                                                        for($i = 0; $i < count($data2); $i++){ ?>
+                                                        <tr>
+                                                            <td align="center"><?php echo $no; ?></td>
+                                                            <td><?php echo $data2[$i]->nama_kegiatan; ?></td>
+                                                            <td align="center"><?php echo $data2[$i]->target_month; ?></td>
+                                                            <td align="center"><?php echo $data2[$i]->realisasi_month; ?></td>
+                                                            <td align="center"></td>
+                                                            <td align="center"><?php echo $data2[$i]->target_kum; ?></td>
+                                                            <td align="center"><?php echo $data2[$i]->realisasi_kum; ?></td>
+                                                            <td align="center">
+                                                                <?php
+                                                                $persen = ($data2[$i]->target_kum == 0) ? (($data2[$i]->realisasi_kum == 0) ? null : 100.00) : round($data2[$i]->realisasi_kum / $data2[$i]->target_kum * 100.00, 2);
+                                                                $progressClass = ($persen >= 0 && $persen < 50) ? 'progress-bar-danger' : (($persen >= 50 && $persen < 90) ? 'progress-bar-warning' : 'progress-bar-success');
                                                                 ?>
-                                                                    <tr>
-                                                                        <td align="center"><?php echo $no; ?></td>
-                                                                        <td><?php echo $data2[$i]->nmkegiatan; ?></td>
-                                                                        <td align="center"><?php echo $targetkum; ?></td>
-                                                                        <td align="center"><?php echo $realkum; ?></td>
-                                                                        <td align="center"></td>
-                                                                        <td align="center"><?php echo $data2[$i]->total_target; ?></td>
-                                                                        <td align="center"><?php echo $data2[$i]->total_realisasi; ?></td>
-                                                                        <td align="center">
-                                                                            <?php
-                                                                            $targetKum = $data2[$i]->target;
-                                                                            $realKum = $data2[$i]->realisasi;
-                                                                            $persen = ($targetKum == 0) ? ($realKum == 0 ? null : 100.00) : round($realKum / $targetKum * 100.00, 2);
-                                                                            $progressClass = ($persen >= 0 && $persen < 50) ? 'progress-bar-danger' : (($persen >= 50 && $persen < 90) ? 'progress-bar-warning' : 'progress-bar-success');
-                                                                            ?>
-                                                                            <div class="progress">
-                                                                                <div class="progress-bar <?php echo $progressClass; ?>" role="progressbar" aria-valuenow="<?php echo $persen; ?>" aria-valuemin="0" aria-valuemax="100" style="<?php echo 'width: '.$persen."%"; ?>; max-width:100%; ">
-                                                                                    <?php echo $persen . " %"; ?>
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td align="center"><?php echo $data2[$i]->nama_satuan; ?></td>
-                                                                    </tr>
-                                                                    <?php
-                                                                    $targetkum  = 0;
-                                                                    $realkum    = 0;
-                                                                    $idkegiatan = $data2[$i+1]->id_jeniskegiatan;
-                                                                    $no++;
-                                                                }
-                                                            
-                                                            }}
-                                                            if($no == 1){
-                                                                echo "<tr><td colspan='6'  style='text-align: center; font-weight: bold'>--Tidak Ada Kegiatan--</td></tr>";
+
+                                                                <div class="progress">
+                                                                    <div class="progress-bar <?php echo $progressClass; ?>" role="progressbar" aria-valuenow="<?php echo $persen; ?>" aria-valuemin="0" aria-valuemax="100" style="<?php echo 'width: '.$persen."%"; ?>; max-width:100%; ">
+                                                                        <?php echo $persen . " %"; ?>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td align="center"><?php echo $data2[$i]->satuan; ?></td>
+                                                        </tr>
+                                                            <?php
+                                                            $no++;
                                                             }
                                                         ?>
                                                     </tbody>

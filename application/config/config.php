@@ -1,7 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 //$config['base_url']	      = "http://".$_SERVER['SERVER_NAME']."/evita/";
-$config['base_url']	      = "http://localhost/cakep2/";
+$config['base_url']	      = "http://localhost/cakep2024/";
 $config['index_page']     = '';
 $config['uri_protocol'] = 'REQUEST_URI';
 $config['permitted_uri_chars'] = 'a-z 0-9~%.:\_\-?()=+%&';

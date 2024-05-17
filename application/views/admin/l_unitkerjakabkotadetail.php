@@ -221,143 +221,67 @@ else
                                     <table class="table table-striped table-hover" style="border-radius:0px; x">
                                         <tbody>
                                             <?php 
-                                            if (empty($data3)) {
+                                            if (empty($data2)) {
                                                 echo "<tr><td colspan='5'  style='text-align: center; font-weight: bold'>--Tidak Ada Kegiatan--</td></tr>";
                                             } else {
                                                 $no             = 1;
-                                                $targetmonth      = 0;
-                                                $realmonth        = 0;
-                                                $idkegiatan     = $data3[0]->idkgt;
-                                                for($i = 0; $i < count($data3); $i++){
-                                                    if($i == (count($data3)-1)){
-                                                        $targetmonth += $data3[$i]->target_mingguan;
-                                                        $realmonth += $data3[$i]->real_mingguan;
-                                                        ?>
-                                                        <tr>
-                                                            <td width="3%" align="center"><?php echo $no;?></td>
-                                                            <td width="30%">3<?php echo $data3[$i]->nmkegiatan;?></td>
-                                                            <td width="15%"><?php echo $data3[$i]->tim;?></td>
-                                                            <td width="4%" align="center"><?php echo $targetmonth;?></td>
-                                                            <td width="4%" align="center"><?php echo $realmonth;?></td>
-                                                            <td width="4%" align="center"><?php echo $data3[$i]->total_target;?></td>
-                                                            <td width="4%" align="center"><?php echo $data3[$i]->total_realisasi;?></td>
-                                                            <td width="20%">
-                                                                <?php
-                                                                    if($data3[$i]->total_target == 0)
-                                                                    {
-                                                                        $persen = ($data3[$i]->total_realisasi == 0) ? '' : '100.00'; 
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        $persen = round($data3[$i]->total_realisasi/$data3[$i]->total_target*100.00,2);
-                                                                        
-                                                                    }
-                                                                    if($persen >= 0 && $persen < 50){
-                                                                    ?>
-                                                                        <div class="progress">
-                                                                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="<?php echo $persen; ?>" aria-valuemin="0" aria-valuemax="100" style="<?php echo 'width: '.$persen."%"; ?>; max-width:100%; ">
-                                                                                <?php echo $persen." %"; ?>
-                                                                            </div>
-                                                                        </div>
-                                                                    <?php
-                                                                    }elseif($persen >= 50 && $persen < 90){
-                                                                    ?>
-                                                                        <div class="progress">
-                                                                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<?php echo $persen; ?>" aria-valuemin="0" aria-valuemax="100" style="<?php echo 'width: '.$persen."%"; ?>; max-width:100%; ">
-                                                                                <?php echo $persen." %"; ?>
-                                                                            </div>
-                                                                        </div>
-                                                                    <?php
-                                                                    }else{
-                                                                    ?>
-                                                                        <div class="progress">
-                                                                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<?php echo $persen; ?>" aria-valuemin="0" aria-valuemax="100" style="<?php echo 'width: '.$persen."%"; ?>; max-width:100%; ">
-                                                                                <?php echo $persen." %"; ?>
-                                                                            </div>
-                                                                        </div>
-                                                                    <?php
-                                                                    }
-                                                                    $persen     = 0.00;
-                                                                    ?>
-                                                            </td>
-                                                            <td width="4%" class="ctr">     
-                                                            </td>
-                                                        </tr>
-                                                    <?php
-                                                    }
-                                                    else
-                                                    {
-                                                        if($idkegiatan == $data3[$i+1]->idkgt)
-                                                        {
-                                                            $targetmonth  += $data3[$i]->target_mingguan;
-                                                            $realmonth    += $data3[$i]->real_mingguan;    
-                                                        }
-                                                        else
-                                                        {
-                                                            $targetmonth  += $data3[$i]->target_mingguan;
-                                                            $realmonth    += $data3[$i]->real_mingguan;
-                                                            ?>
-                                                            <tr>
-                                                                <td width="3%" align="center"><?php echo $no;?></td>
-                                                                <td width="30%"><?php echo $data3[$i]->nmkegiatan;?></td>
-                                                                <td width="15%"><?php echo $data3[$i]->tim;?></td>
-                                                                <td width="4%" align="center"><?php echo $targetmonth;?></td>
-                                                                <td width="4%" align="center"><?php echo $realmonth;?></td>
-                                                                <td width="4%" align="center"><?php echo $data3[$i]->total_target;?></td>
-                                                                <td width="4%" align="center"><?php echo $data3[$i]->total_realisasi;?></td>
-                                                                <td width="20%">
-                                                                    <?php
-                                                                    if($data3[$i]->total_target == 0)
-                                                                    {
-                                                                        $persen = ($data3[$i]->total_realisasi == 0) ? '' : '100.00';
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        $persen = round($data3[$i]->total_realisasi/$data3[$i]->total_target*100.00,2);
-                                                                        
-                                                                    }
-                                                                    if($persen >= 0 && $persen < 50){
-                                                                    ?>
-                                                                        <div class="progress">
-                                                                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="<?php echo $persen; ?>" aria-valuemin="0" aria-valuemax="100" style="<?php echo 'width: '.$persen."%"; ?>; max-width:100%; ">
-                                                                                <?php echo $persen." %"; ?>
-                                                                            </div>
-                                                                        </div>
-                                                                    <?php
-                                                                    }
-                                                                    elseif($persen >= 50 && $persen < 90)
-                                                                    {
-                                                                    ?>
-                                                                        <div class="progress">
-                                                                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<?php echo $persen; ?>" aria-valuemin="0" aria-valuemax="100" style="<?php echo 'width: '.$persen."%"; ?>; max-width:100%; ">
-                                                                                <?php echo $persen." %"; ?>
-                                                                            </div>
-                                                                        </div>
-                                                                    <?php
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                    ?>
-                                                                        <div class="progress">
-                                                                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<?php echo $persen; ?>" aria-valuemin="0" aria-valuemax="100" style="<?php echo 'width: '.$persen."%"; ?>; max-width:100%; ">
-                                                                                <?php echo $persen." %"; ?>
-                                                                            </div>
-                                                                        </div>
-                                                                    <?php
-                                                                    }
-                                                                    $persen     = 0.00;
-                                                                    ?>
-                                                                </td>
-                                                                <td width="4%" class="ctr"></td>
-                                                            </tr>
+                                                for($i = 0; $i < count($data2); $i++){
+                                                    ?>
+                                                    <tr>
+                                                        <td width="3%" align="center"><?php echo $no;?></td>
+                                                        <td width="30%"><?php echo $data2[$i]->nama_kegiatan;?></td>
+                                                        <td width="15%"><?php echo $data2[$i]->tim;?></td>
+                                                        <td width="4%" align="center"><?php echo $data2[$i]->target_month;?></td>
+                                                        <td width="4%" align="center"><?php echo $data2[$i]->realisasi_month;?></td>
+                                                        <td width="4%" align="center"><?php echo $data2[$i]->target_kum;?></td>
+                                                        <td width="4%" align="center"><?php echo $data2[$i]->realisasi_kum;?></td>
+                                                        <td width="20%">
                                                             <?php
-                                                            $no++;
-                                                            $targetmonth  = 0;
-                                                            $realmonth    = 0;
-                                                            $idkegiatan = $data3[$i+1]->idkgt;
-                                                        }
-                                                    }
-                                                }  
+                                                                if($data2[$i]->target_kum == 0)
+                                                                {
+                                                                    $persen = ($data2[$i]->realisasi_kum == 0) ? 'tidak ada target' : '100.00'; 
+                                                                }
+                                                                else
+                                                                {
+                                                                    $persen = round($data2[$i]->realisasi_kum/$data2[$i]->target_kum*100.00,2);
+                                                                    
+                                                                }
+                                                                
+                                                                if($persen >= 0 && $persen < 50){
+                                                                ?>
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="<?php echo $persen; ?>" aria-valuemin="0" aria-valuemax="100" style="<?php echo 'width: '.$persen."%"; ?>; max-width:100%; ">
+                                                                            <?php echo $persen." %"; ?>
+                                                                        </div>
+                                                                    </div>
+                                                                <?php
+                                                                }elseif($persen >= 50 && $persen < 90){
+                                                                ?>
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<?php echo $persen; ?>" aria-valuemin="0" aria-valuemax="100" style="<?php echo 'width: '.$persen."%"; ?>; max-width:100%; ">
+                                                                            <?php echo $persen." %"; ?>
+                                                                        </div>
+                                                                    </div>
+                                                                <?php
+                                                                }else{
+                                                                ?>
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<?php echo $persen; ?>" aria-valuemin="0" aria-valuemax="100" style="<?php echo 'width: '.$persen."%"; ?>; max-width:100%; ">
+                                                                            <?php echo $persen." %"; ?>
+                                                                        </div>
+                                                                    </div>
+                                                                <?php
+                                                                }
+                                                                $persen     = 0.00;
+                                                                ?>
+                                                        </td>
+                                                        <td width="4%" class="ctr">     
+                                                        </td>
+                                                    </tr>
+                                                    <?php
+                                                    $no++;
+                                                }
+                                                 
                                             }
                                             ?>
                                         </tbody>
