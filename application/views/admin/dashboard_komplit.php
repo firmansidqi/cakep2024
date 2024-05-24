@@ -81,7 +81,9 @@
             transform: translateY(0);
             opacity: 1;
         }
-    
+        
+        
+        
     </style>
     
     <?php
@@ -195,7 +197,6 @@
                 </div>
             </div>
         </div>
-        
         <div class="container reveal active"  id="dashboard1">
             <div class="row">
                 <div class="dashboard">

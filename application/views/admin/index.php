@@ -22,7 +22,8 @@
                 font-style: normal;
                 font-weight: 400;
                 src: local('Lobster'), url(<?php echo base_url(); ?>aset/font/tiga.woff) format('woff');
-            } 
+            }
+        }
 
         </style>
 

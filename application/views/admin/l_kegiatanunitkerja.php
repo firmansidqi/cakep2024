@@ -54,13 +54,14 @@ $uri5 = $this->uri->segment(5);
                       <!-- Custom Tabs -->
                       <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs">
-                          <li><a href="#tab_1" data-toggle="tab">Mingguan</a></li>
-                          <li class="active"><a href="#tab_2" data-toggle="tab">Bulanan</a></li>
+                          <li class="active"><a href="#tab_1" data-toggle="tab">Mingguan</a></li>
+                          <li><a href="#tab_2" data-toggle="tab">Bulanan</a></li>
                           
                           <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
                         </ul>
                         <div class="tab-content">
-                            <div class="tab-pane" id="tab_1">
+                            <div class="tab-pane active" id="tab_1">
+                                <marquee style="animation: marquee 10s linear infinite;font-size: 1em;color: #333;"><b><i>Approve</i> seluruh kegiatan pada masing-masing minggu pada kegiatan dengan status <i>new real</i>. || <i>Approve</i> kegiatan dilakukan pada semua kegiatan di masing-masing kabupaten, baik target > 0 maupun target = 0.|| Jika ada pertanyaan/permasalahan silahkan akses s.bps.go.id/cakepkaltara</b></marquee>
                                 <div class="panel-body">
                                 <?php
                                 for($i = 0; $i < getMinggu($uri4)[0]; $i++){
@@ -256,7 +257,7 @@ $uri5 = $this->uri->segment(5);
                             </div>
                             </div>
                             <!-- /.tab-pane -->
-                            <div class="tab-pane active" id="tab_2">
+                            <div class="tab-pane" id="tab_2">
                                 <?php foreach($datatim as $tim){
                                     if ($this->session->userdata('admin_nip') == '6500' || $this->session->userdata('admin_nip') == $tim->id_tim || $this->session->userdata('admin_level') == "pemantau")
                                     { ?>

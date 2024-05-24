@@ -88,13 +88,14 @@ else
                       <!-- Custom Tabs -->
                       <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs">
-                          <li><a href="#tab_1" data-toggle="tab">Mingguan</a></li>
-                          <li class="active"><a href="#tab_2" data-toggle="tab">Bulanan</a></li>
+                          <li class="active"><a href="#tab_1" data-toggle="tab">Mingguan</a></li>
+                          <li><a href="#tab_2" data-toggle="tab">Bulanan</a></li>
                           
                           <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
                         </ul>
                         <div class="tab-content">
-                            <div class="tab-pane" id="tab_1">
+                            <div class="tab-pane active" id="tab_1">
+                                    <marquee style="animation: marquee 10s linear infinite;font-size: 1em;color: #333;"><b>Entri seluruh kegiatan pada masing-masing minggu, sehingga seluruh kegiatan berstatus <i>approve</i>. Jika terdapat kegiatan yang telah selesai pada minggu sebelumnya, isikan realisasi sebesar 0 pada minggu saat ini/setelahnya. Begitu pula, Jika terdapat kegiatan memiliki target sebesar 0, isikan realisasi sebesar 0. || Jika ada pertanyaan/permasalahan silahkan akses s.bps.go.id/cakepkaltara</b></marquee>
                                 <div class="panel-body">
                                     <?php
                                     for($i = 0; $i < getMinggu($uri4)[0]; $i++)
@@ -166,8 +167,20 @@ else
                                                                                 ?>
                                                                             </td>
                                                                             <td align="center"><?php echo $d->satuan;?></td>
-                                                                            <td align="center"><?php echo $d->target;?></td>
-                                                                            <td align="center"><?php echo $d->realisasi;?></td>
+                                                                            <td align="center">
+                                                                                <?php echo $d->target;?>       
+                                                                            </td>
+                                                                            <td align="center">
+                            
+                                                                            <?php 
+                                                                                if($d->flag_konfirm == 1)
+                                                                                {
+                                                                                    echo "-";    
+                                                                                }else{
+                                                                                    echo $d->realisasi;
+                                                                                }
+                                                                            ?>        
+                                                                            </td>
                                                                             <td align="center">
                                                                                 <div class="btn-group">
                                                                                     <a href="<?php echo base_URL()?>index.php/admin/entry_unitkerjakab/edt/<?php echo $d->id_jeniskegiatan; ?>/<?php echo $d->id_kab; ?>/<?php echo $d->minggu_ke; ?>" class="btn btn-danger btn-xs" title="Update Data"><i class="icon-plus icon-white"> </i></a>
@@ -190,7 +203,7 @@ else
                                     </div>
                                 </div>
                           <!-- /.tab-pane -->
-                          <div class="tab-pane active" id="tab_2">
+                          <div class="tab-pane" id="tab_2">
                             <div class="panel-body">
                                 <!-- isi tab 2 -->
                                 <div style="border-radius: 16px 16px 0px 0px; overflow:hidden; ">

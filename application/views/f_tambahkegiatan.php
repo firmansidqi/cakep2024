@@ -145,12 +145,8 @@ $uri4 = $this->uri->segment(4);
 										while($p=mysql_fetch_array($satuan)){
 											echo "<option value='".$p[id_satuan]."'>".$p[satuan]."</option>\n";
 										}
-							
-							
 								}
 								?>
-								
-									<!--<input type="text" tabindex="5" name="satuan" required value="<?php echo $satuan; ?>" id="satuan" style="width: 100px" class="form-control">-->
 								</b>
 							</td>
 						</tr>
@@ -165,9 +161,7 @@ $uri4 = $this->uri->segment(4);
 						<tr><td colspan="2">
 						<br><a href="javascript:history.back()" tabindex="10" class="btn btn-primary"><i class="icon icon-arrow-left icon-white"></i> Batal</a>
 						<button type="submit" class="btn btn-success" tabindex="9" ><i class="icon icon-folder-close icon-white"></i> Simpan</button>
-						
 						</td></tr>
-						
 						</table>
 					</div>
 					<div class="col-lg-6">
@@ -179,46 +173,42 @@ $uri4 = $this->uri->segment(4);
 						<tr>
 							<td width="20%"></td>
 							<td>
-							<table class="table table-striped">
-							<tr>
-							<th>No</th>
-							<th>Kode Kab/Kota</th>
-							<th>Kab/Kota</th>
-							<th>Target</th>
-							<?php
-							if ($mode == "edt" || $mode == "act_edt") {
-							?>
-							<th>Realisasi</th>
-							<?php
-							}?>
-							</tr>
-							
-							<?php
-								$no=1;
-								foreach($wilayah as $row) 
-								{
-									$querytarget = mysql_query("select * from t_kegiatan where id_kab='$row->id_kab' and id_jeniskegiatan='$id_jeniskegiatan'");
-									$datatarget = mysql_fetch_array($querytarget);
-									$target_kab = $datatarget['target'];
-									$realisasi_kab = $datatarget['realisasi'];
-									
-									echo "<tr>";
-									echo "<td>".$no." </td>";
-									echo "<td>".$row->id_kab." </td>";
-									echo "<td>".$row->nama_kab." </td>";
-									?>
-									<td><input type="text" name="<?php echo '_'.$row->id_kab; ?>" class="form-control" size='60px' value="<?php echo $target_kab; ?>"></td>
+								<table class="table table-striped">
+									<tr>
+										<th>No</th>
+										<th>Kode Kab/Kota</th>
+										<th>Kab/Kota</th>
+										<th>Target</th>
+										<?php if ($mode == "edt" || $mode == "act_edt") { ?>
+										<th>Realisasi</th>
+										<?php } ?>
+									</tr>
 									<?php
-									
-									if ($mode == "edt" || $mode == "act_edt") {
-									?>
-									<td><input type="text" name="<?php echo 'realisasi_'.$row->id_kab; ?>" class="form-control" size='60px' value="<?php echo $realisasi_kab; ?>"></td>
-									<?php
+									$no=1;
+									foreach($wilayah as $row) 
+									{
+										$querytarget = mysql_query("select * from t_kegiatan where id_kab='$row->id_kab' and id_jeniskegiatan='$id_jeniskegiatan'");
+										$datatarget = mysql_fetch_array($querytarget);
+										$target_kab = $datatarget['target'];
+										$realisasi_kab = $datatarget['realisasi'];
+										
+										echo "<tr>";
+										echo "<td>".$no." </td>";
+										echo "<td>".$row->id_kab." </td>";
+										echo "<td>".$row->nama_kab." </td>";
+										?>
+										<td><input type="text" name="<?php echo '_'.$row->id_kab; ?>" class="form-control" size='60px' value="<?php echo $target_kab; ?>"></td>
+										<?php
+										
+										if ($mode == "edt" || $mode == "act_edt") {
+										?>
+										<td><input type="text" name="<?php echo 'realisasi_'.$row->id_kab; ?>" class="form-control" size='60px' value="<?php echo $realisasi_kab; ?>"></td>
+										<?php
+										}
+										echo "</tr>";
+										$no++;
 									}
-									echo "</tr>";
-									$no++;
-								}
-							?>
+								?>
 							</table>
 							</td>
 						</tr>	
