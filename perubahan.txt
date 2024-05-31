@@ -2,3 +2,12 @@ view l_unitkerjakabkotadetail
 controller admin function unitkerjakabkotadetail
 view l_kegiatanunitkerja
 controller admin function unitkerjaprov
+
+
+
+
+NGODING
+git add .
+git commit -m "pesan"
+git push -u origin nama_branch
+pull request melalui github

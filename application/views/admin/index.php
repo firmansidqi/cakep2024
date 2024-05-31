@@ -22,7 +22,54 @@
                 font-style: normal;
                 font-weight: 400;
                 src: local('Lobster'), url(<?php echo base_url(); ?>aset/font/tiga.woff) format('woff');
-            } 
+            }
+
+            .marquee-container {
+    width: 100%; /* Sesuaikan lebar sesuai kebutuhan */
+    overflow: hidden; /* Teks di dalam div tidak akan keluar dari div */
+}
+
+.marquee {
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 0 100%; /* Padding di sekitar teks */
+    animation: marquee 15s linear infinite; /* Durasi animasi */
+    font-size: 16px; /* Ukuran font */
+    animation-delay: -15s; /* Mengatur delay menjadi negatif */
+}
+
+@keyframes marquee {
+    0%   { transform: translateX(100%); } /* Mulai dari sisi kanan */
+    100% { transform: translateX(-100%); } /* Bergerak sampai sisi kiri */
+}
+
+
+
+
+            /*@keyframes marquee {
+                0% { transform: translateX(100%); }
+                100% { transform: translateX(-100%); }
+            }
+
+            .marquee-container {
+                overflow: hidden;
+                white-space: nowrap;
+                box-sizing: border-box;
+                width: 100%;
+                padding: 10px 0; /* Tambahkan padding atas dan bawah */
+                /*position: relative;*/
+            /*}*/
+
+            /*.marquee {
+                display: inline-block;
+                animation: marquee 40s linear infinite;
+                font-size: 1em;
+                color: #333;
+            }
+            .marquee:nth-child(2) {
+                animation-delay: 0s; /* Adjust to half of the animation duration */
+            /*}*/
+        }
 
         </style>
 

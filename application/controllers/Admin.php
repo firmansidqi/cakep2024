@@ -498,7 +498,12 @@ class Admin extends CI_Controller {
 				for($i = 0; $i < count($data_kab); $i++)
 				{
 					$this->db->query("INSERT INTO t_kegiatan VALUES (NULL,'$id_jeniskegiatan', '$kode_kab', '$m_ke','','$data_kab[$i]','$friday[$i]','0','$bataslewat','1','-','0','-','-','-1','0','0','','','0','',FALSE)");
-					$friday[$i+1] = date("Y-m-d", strtotime('next friday'.$friday[$i]));
+					if($i < count($data_kab)-2){
+						$friday[$i+1] = date("Y-m-d", strtotime('next friday'.$friday[$i]));
+					}else{
+						$friday[$i+1] = $batas_waktu;
+					}
+					
 					$m_ke++;
 					$targetkabkumulatif += $data_kab[$i];
 				};
@@ -541,7 +546,11 @@ class Admin extends CI_Controller {
 			$jfriday                = $sfriday / 7 + 1;
 			$friday[0]              = date("Y-m-d", strtotime($ffriday));
 			for($i = 1; $i < $jfriday; $i++){
-				$friday[$i] = date("Y-m-d", strtotime('next friday'.$friday[$i-1]));
+				if($i < $jfriday-1){
+					$friday[$i] = date("Y-m-d", strtotime('next friday'.$friday[$i-1]));	
+				}else{
+					$friday[$i] = $batas_waktu;
+				}
 			}
 			
 			foreach ($wilayah as $row)
@@ -628,10 +637,7 @@ class Admin extends CI_Controller {
                             {
                                 $nilai_deadline         = "1";
                             };
-                            
                             $nilai_total                = $data[$i]->nilai_total;
-                            
-                            
                         }
                         else
                         {
@@ -650,7 +656,6 @@ class Admin extends CI_Controller {
                         {
                             $this->db->query("UPDATE t_kegiatan SET id_jeniskegiatan = '$id_jeniskegiatannew', target = '$data_baru[$i]', batas_minggu = '$friday[$i]', persen_realisasi='$persen_realisasi', selisih_pengiriman='$selisih_pengiriman', nilai_volume='$nilai_volume', nilai_deadline='$nilai_deadline', nilai_total='$nilai_total' where id_jeniskegiatan='$id_jeniskegiatan' and id_kab='$kode_kab' and minggu_ke = '$minggu'" );
                         }
-
                     }
 					else
 					{
@@ -661,9 +666,7 @@ class Admin extends CI_Controller {
 					    else
 					    {
 					        $this->db->query("INSERT INTO t_kegiatan VALUES (NULL,'$id_jeniskegiatannew', '$kode_kab', '$minggu','','$data_baru[$i]','$friday[$i]','0','$bataslewat','1','-','0','-','-','-1','0','0','','','0','',FALSE)");
-					    }
-					    
-					    
+					    } 
 					};
 					
 					$targetkumnew += $data_baru[$i];
@@ -1508,10 +1511,12 @@ class Admin extends CI_Controller {
 		
 		if ($mau_ke == "edt") {
 			$id_edit          = $this->input->get('konfirmasi_id');
-			$id_jeniskegiatan = substr($id_edit,0,strlen($id_edit)-5);
-
-			$id_kab         =substr($id_edit,strlen($id_edit)-5,4);
-			$minggu         =substr($id_edit,strlen($id_edit)-1,1);
+			// $id_jeniskegiatan = substr($id_edit,0,strlen($id_edit)-5);
+			// $id_kab         =substr($id_edit,strlen($id_edit)-5,4);
+			// $minggu         =substr($id_edit,strlen($id_edit)-1,1);
+			$id_jeniskegiatan = substr($id_edit, 0, 8);
+			$id_kab = substr($id_edit, 8, 4);
+			$minggu = substr($id_edit, 12);
 			$a['datpil']    = $this->db->query("select k.id_jeniskegiatan,subk.nama_kegiatan as nmkegiatan,k.id_kab,w.nama_kab,k.target,k.realisasi,k.bukti,k.link_pengiriman, k.minggu_ke, k.batas_minggu from t_kegiatan k inner join m_jeniskegiatan m on k.id_jeniskegiatan=m.id_jeniskegiatan inner join m_kab w on k.id_kab=w.id_kab LEFT JOIN m_listkegiatan subk ON m.nama_kegiatan = subk.id where k.id_jeniskegiatan='$id_jeniskegiatan' and k.id_kab='$id_kab' and k.minggu_ke='$minggu'")->row();    
 			$a['page']      = "f_konfirmasi";
 		}
@@ -1543,6 +1548,8 @@ class Admin extends CI_Controller {
 			}elseif($nilai_volume == 1){
 			    if($nilai_deadline == 2){
 			        $nilai_total    = 98;
+			    }else{
+			    	$nilai_total	= 98;
 			    }
 			}
 			
@@ -1918,7 +1925,8 @@ class Admin extends CI_Controller {
 				$lfridaylmonth      = getMinggu($bulanlalu)[1][$nfridaylmonth-1];
 				$a['datatim']       = $this->db->query("SELECT * FROM m_tim ORDER BY id_tim ASC")->result();
 				$a['data']          = $this->db->query("SELECT t.*, m.nama_kegiatan, m.batas_waktu, m.dasar_surat, u.tim, s.satuan, subk.nama_kegiatan as nmkegiatan FROM t_kegiatan t LEFT JOIN m_jeniskegiatan m ON t.id_jeniskegiatan=m.id_jeniskegiatan LEFT JOIN m_listkegiatan subk ON m.nama_kegiatan=subk.id LEFT JOIN m_kegiatan k ON subk.id_kegiatan = k.id_kegiatan LEFT JOIN m_tim u ON k.id_tim=u.id_tim LEFT JOIN m_satuan s ON m.satuan=s.id_satuan WHERE MONTH(m.mulai)<=('$idu') AND MONTH(m.batas_waktu)>=('$idu') AND YEAR(m.batas_waktu)='$tahun' ORDER BY k.id_tim ASC,m.batas_waktu ASC, t.id_jeniskegiatan ASC, t.batas_minggu ASC, t.id_kab ASC")->result();
-				$a['data2']          = $this->db->query("SELECT * FROM (SELECT jnsk.*,t.target AS target_mingguan,t.batas_minggu,t.realisasi AS real_mingguan, s.satuan as nama_satuan, subk.nama_kegiatan as nmkegiatan, k.* FROM m_jeniskegiatan jnsk LEFT JOIN m_satuan s ON jnsk.satuan = s.id_satuan LEFT JOIN m_listkegiatan subk on jnsk.nama_kegiatan = subk.id LEFT JOIN m_kegiatan k ON subk.id_kegiatan = k.id_kegiatan JOIN t_kegiatan t on jnsk.id_jeniskegiatan = t.id_jeniskegiatan WHERE ((MONTH(jnsk.mulai)<='$bulanini' AND jnsk.batas_waktu>'$lfridaylmonth') OR (MONTH(jnsk.mulai) > '$bulanini' AND jnsk.mulai<='$lastfriday')) and MONTH(t.batas_minggu) = '$idu' and YEAR(jnsk.batas_waktu)='$tahun') AS kegiatan JOIN (SELECT id_jeniskegiatan, SUM(target) AS total_target, SUM(realisasi) AS total_realisasi FROM t_kegiatan GROUP BY id_jeniskegiatan) AS total_target ON kegiatan.id_jeniskegiatan = total_target.id_jeniskegiatan ORDER BY kegiatan.batas_waktu asc")->result();
+				$a['data2']          = $this->db->query("SELECT * FROM (SELECT m.id_jeniskegiatan,l.nama_kegiatan,m.mulai,m.batas_waktu, MAX(t.batas_minggu) AS batas_minggu_akhir,SUM(t.target) AS target_month,SUM(t.realisasi) AS realisasi_month, s.satuan, k.id_tim, mt.tim FROM `m_jeniskegiatan` m INNER JOIN t_kegiatan t ON m.id_jeniskegiatan = t.id_jeniskegiatan LEFT JOIN m_listkegiatan l ON m.nama_kegiatan = l.id LEFT JOIN m_satuan s ON m.satuan = s.id_satuan LEFT JOIN m_kegiatan k ON l.id_kegiatan = k.id_kegiatan LEFT JOIN m_tim mt ON k.id_tim = mt.id_tim WHERE MONTH(m.mulai) <= '$bulanini' AND MONTH(t.batas_minggu) >= '$idu' GROUP by m.id_jeniskegiatan) AS a JOIN ( SELECT id_jeniskegiatan, SUM(target) AS target_kum, SUM(realisasi) AS realisasi_kum FROM t_kegiatan GROUP BY id_jeniskegiatan) AS b ON a.id_jeniskegiatan = b.id_jeniskegiatan ORDER BY a.id_tim ASC, a.id_jeniskegiatan ASC")->result();
+				$a['data3']          = $this->db->query("SELECT * FROM (SELECT jnsk.*,t.target AS target_mingguan,t.batas_minggu,t.realisasi AS real_mingguan, s.satuan as nama_satuan, subk.nama_kegiatan as nmkegiatan, k.* FROM m_jeniskegiatan jnsk LEFT JOIN m_satuan s ON jnsk.satuan = s.id_satuan LEFT JOIN m_listkegiatan subk on jnsk.nama_kegiatan = subk.id LEFT JOIN m_kegiatan k ON subk.id_kegiatan = k.id_kegiatan JOIN t_kegiatan t on jnsk.id_jeniskegiatan = t.id_jeniskegiatan WHERE ((MONTH(jnsk.mulai)<='$bulanini' AND jnsk.batas_waktu>'$lfridaylmonth') OR (MONTH(jnsk.mulai) > '$bulanini' AND jnsk.mulai<='$lastfriday')) and MONTH(t.batas_minggu) = '$idu' and YEAR(jnsk.batas_waktu)='$tahun') AS kegiatan JOIN (SELECT id_jeniskegiatan, SUM(target) AS total_target, SUM(realisasi) AS total_realisasi FROM t_kegiatan GROUP BY id_jeniskegiatan) AS total_target ON kegiatan.id_jeniskegiatan = total_target.id_jeniskegiatan ORDER BY kegiatan.batas_waktu asc")->result();
 			$a['page']			= "l_kegiatanunitkerja";
 				$a['page']			= "l_kegiatanunitkerja";	
 			}
@@ -1944,9 +1952,8 @@ class Admin extends CI_Controller {
 			$lfridaylmonth      = getMinggu($bulanlalu)[1][$nfridaylmonth-1];
 			$a['a'] = $lfridaylmonth;
 			$a['datatim']       = $this->db->query("SELECT * FROM m_tim ORDER BY id_tim ASC")->result();
-			$a['data']          = $this->db->query("SELECT t.*, m.nama_kegiatan, m.batas_waktu, m.dasar_surat, u.tim, s.satuan, subk.nama_kegiatan as nmkegiatan FROM t_kegiatan t LEFT JOIN m_jeniskegiatan m ON t.id_jeniskegiatan=m.id_jeniskegiatan LEFT JOIN m_listkegiatan subk ON m.nama_kegiatan=subk.id LEFT JOIN m_kegiatan k ON subk.id_kegiatan = k.id_kegiatan LEFT JOIN m_tim u ON k.id_tim=u.id_tim LEFT JOIN m_satuan s ON m.satuan=s.id_satuan WHERE MONTH(m.mulai)<=('$bulanini') AND MONTH(m.batas_waktu)>=('$bulanini') AND YEAR(m.batas_waktu)='$tahun' ORDER BY k.id_tim ASC,m.batas_waktu ASC, t.id_jeniskegiatan ASC, t.batas_minggu ASC, t.id_kab ASC")->result();
+			$a['data']          = $this->db->query("SELECT t.*, m.nama_kegiatan, m.batas_waktu, m.dasar_surat, u.tim, s.satuan, subk.nama_kegiatan as nmkegiatan FROM t_kegiatan t LEFT JOIN m_jeniskegiatan m ON t.id_jeniskegiatan=m.id_jeniskegiatan LEFT JOIN m_listkegiatan subk ON m.nama_kegiatan=subk.id LEFT JOIN m_kegiatan k ON subk.id_kegiatan = k.id_kegiatan LEFT JOIN m_tim u ON k.id_tim=u.id_tim LEFT JOIN m_satuan s ON m.satuan=s.id_satuan WHERE MONTH(m.mulai)<=('$bulanini') AND MONTH(t.batas_minggu)>=('$bulanini') AND YEAR(m.batas_waktu)='$tahun' ORDER BY k.id_tim ASC,m.batas_waktu ASC, t.id_jeniskegiatan ASC, t.batas_minggu ASC, t.id_kab ASC")->result();
 			$a['data2']          = $this->db->query("SELECT * FROM (SELECT m.id_jeniskegiatan,l.nama_kegiatan,m.mulai,m.batas_waktu, MAX(t.batas_minggu) AS batas_minggu_akhir,SUM(t.target) AS target_month,SUM(t.realisasi) AS realisasi_month, s.satuan, k.id_tim, mt.tim FROM `m_jeniskegiatan` m INNER JOIN t_kegiatan t ON m.id_jeniskegiatan = t.id_jeniskegiatan LEFT JOIN m_listkegiatan l ON m.nama_kegiatan = l.id LEFT JOIN m_satuan s ON m.satuan = s.id_satuan LEFT JOIN m_kegiatan k ON l.id_kegiatan = k.id_kegiatan LEFT JOIN m_tim mt ON k.id_tim = mt.id_tim WHERE MONTH(m.mulai) <= '$bulanini' AND MONTH(t.batas_minggu) >= '$bulanini' GROUP by m.id_jeniskegiatan) AS a JOIN ( SELECT id_jeniskegiatan, SUM(target) AS target_kum, SUM(realisasi) AS realisasi_kum FROM t_kegiatan GROUP BY id_jeniskegiatan) AS b ON a.id_jeniskegiatan = b.id_jeniskegiatan ORDER BY a.id_tim ASC, a.id_jeniskegiatan ASC")->result();
-			$a['data3']          = $this->db->query("SELECT * FROM (SELECT jnsk.*,t.target AS target_mingguan,t.batas_minggu,t.realisasi AS real_mingguan, s.satuan as nama_satuan, subk.nama_kegiatan as nmkegiatan, k.* FROM m_jeniskegiatan jnsk LEFT JOIN m_satuan s ON jnsk.satuan = s.id_satuan LEFT JOIN m_listkegiatan subk on jnsk.nama_kegiatan = subk.id LEFT JOIN m_kegiatan k ON subk.id_kegiatan = k.id_kegiatan JOIN t_kegiatan t on jnsk.id_jeniskegiatan = t.id_jeniskegiatan WHERE ((MONTH(jnsk.mulai)<='$bulanini' AND jnsk.batas_waktu>'$lfridaylmonth') OR (MONTH(jnsk.mulai) > '$bulanini' AND jnsk.mulai<='$lastfriday')) and MONTH(t.batas_minggu) = '$bulanini' and YEAR(jnsk.batas_waktu)='$tahun') AS kegiatan JOIN (SELECT id_jeniskegiatan, SUM(target) AS total_target, SUM(realisasi) AS total_realisasi FROM t_kegiatan GROUP BY id_jeniskegiatan) AS total_target ON kegiatan.id_jeniskegiatan = total_target.id_jeniskegiatan ORDER BY kegiatan.batas_waktu asc")->result();
 			$a['page']			= "l_kegiatanunitkerja";
 		}
 		
@@ -2059,7 +2066,7 @@ class Admin extends CI_Controller {
 			$hariini			= date("d-m-Y");
 			$bulanini 			= substr($hariini,3,2);
 			//$id_kabkota 		= $this->session->userdata('admin_user');
-			$a['data']          = $this->db->query("SELECT t.*, subk.nama_kegiatan as nmkegiatan, m.batas_waktu, u.tim, s.satuan FROM t_kegiatan t LEFT JOIN m_jeniskegiatan m ON t.id_jeniskegiatan=m.id_jeniskegiatan LEFT JOIN m_listkegiatan subk ON m.nama_kegiatan = subk.id LEFT JOIN m_kegiatan k ON subk.id_kegiatan = k.id_kegiatan LEFT JOIN m_tim u ON k.id_tim = u.id_tim LEFT JOIN m_satuan s ON m.satuan=s.id_satuan WHERE t.id_kab=$id_kabkota AND MONTH(t.batas_minggu)>=('$bulanini'-1) AND MONTH(t.batas_minggu)<=('$bulanini'+1) AND YEAR(t.batas_minggu)='$tahun' ORDER BY k.id_tim ASC, t.id_jeniskegiatan ASC ")->result();
+			$a['data']          = $this->db->query("SELECT t.*, subk.nama_kegiatan as nmkegiatan, m.batas_waktu,m.mulai, u.tim, s.satuan FROM t_kegiatan t LEFT JOIN m_jeniskegiatan m ON t.id_jeniskegiatan=m.id_jeniskegiatan LEFT JOIN m_listkegiatan subk ON m.nama_kegiatan = subk.id LEFT JOIN m_kegiatan k ON subk.id_kegiatan = k.id_kegiatan LEFT JOIN m_tim u ON k.id_tim = u.id_tim LEFT JOIN m_satuan s ON m.satuan=s.id_satuan WHERE t.id_kab=$id_kabkota AND MONTH(t.batas_minggu)>=('$bulanini'-1) AND MONTH(t.batas_minggu)<=('$bulanini'+1) AND YEAR(t.batas_minggu)='$tahun' ORDER BY k.id_tim ASC, t.id_jeniskegiatan ASC ")->result();
 			$a['data2']		= $this->db->query("SELECT * FROM (SELECT m.id_jeniskegiatan,l.nama_kegiatan,m.mulai,m.batas_waktu, MAX(t.batas_minggu) AS batas_minggu_akhir,SUM(t.target) AS target_month,SUM(t.realisasi) AS realisasi_month, s.satuan, k.id_tim, mt.tim FROM `m_jeniskegiatan` m INNER JOIN t_kegiatan t ON m.id_jeniskegiatan = t.id_jeniskegiatan LEFT JOIN m_listkegiatan l ON m.nama_kegiatan = l.id LEFT JOIN m_satuan s ON m.satuan = s.id_satuan LEFT JOIN m_kegiatan k ON l.id_kegiatan = k.id_kegiatan LEFT JOIN m_tim mt ON k.id_tim = mt.id_tim WHERE MONTH(m.mulai) <= '$bulanini' AND MONTH(t.batas_minggu) >= '$bulanini' AND t.id_kab = '$id_kabkota' GROUP by m.id_jeniskegiatan) AS a JOIN ( SELECT id_jeniskegiatan, SUM(target) AS target_kum, SUM(realisasi) AS realisasi_kum FROM t_kegiatan WHERE id_kab = '$id_kabkota' GROUP BY id_jeniskegiatan) AS b ON a.id_jeniskegiatan = b.id_jeniskegiatan ORDER BY a.id_tim ASC, a.id_jeniskegiatan ASC;")->result();
 			$a['page']			= "l_unitkerjakabkotadetail";	
 		}
@@ -2962,8 +2969,50 @@ class Admin extends CI_Controller {
 		$subkegiatan=$this->M_getfunction->getsubkegiatan($id_kegiatan);
 		echo json_encode($subkegiatan);
 	}
-	
+
 	function getjumat(){
+	    $fday = date("d-m-Y", strtotime($this->uri->segment(3)));
+	    $lday = date("d-m-Y", strtotime($this->uri->segment(4)));
+	    $ffriday = date("d-m-Y", strtotime("this Friday", strtotime($fday)));
+	    
+	    // Menghitung lfriday dan memeriksa apakah itu hari Jumat
+	    $lfriday = date("d-m-Y", strtotime($lday));
+	    $dayOfWeek = date('N', strtotime($lfriday));
+	    if ($dayOfWeek != 5) { // Jika bukan hari Jumat
+	        $actualLFriday = date("d-m-Y", strtotime("last Friday", strtotime($lday)));
+	        $includeLFriday = true;
+	    } else {
+	        $actualLFriday = date("d-m-Y", strtotime("this Friday", strtotime($lday)));
+	        $includeLFriday = false;
+	    }
+	    
+	    $sfriday = floor((strtotime($actualLFriday) - strtotime($ffriday)) / (60 * 60 * 24));
+	    $jfriday = ($sfriday / 7) + 1;
+	    $friday[0] = date("Y-m-d", strtotime($ffriday));
+	    $friday2[0] = tgl_jam_sql($friday[0]);
+
+	    if ($sfriday > 0) {
+	        for ($i = 1; $i < $jfriday; $i++) {
+	            $friday[$i] = date("Y-m-d", strtotime('next Friday', strtotime($friday[$i-1])));
+	            $friday2[$i] = tgl_jam_sql($friday[$i]);
+	        }
+	    }
+
+	    // Tambahkan lfriday jika bukan hari Jumat dan masukkan ke dalam array seperti hari Jumat
+	    if ($includeLFriday) {
+	        $friday[] = date("Y-m-d", strtotime($lfriday));
+	        $friday2[] = tgl_jam_sql(date("Y-m-d", strtotime($lfriday)));
+	        $jfriday++; // Tambahkan 1 ke jumlah Jumat
+	    }
+
+	    $data = array(
+	        "jfriday" => $jfriday,
+	        "friday" => $friday,
+	        "friday2" => $friday2,
+	    );
+	    echo json_encode($data);
+	}
+	function getjumat2(){
 		$fday       = date("d-m-Y", strtotime($this->uri->segment(3)));
 		$lday       = date("d-m-Y", strtotime($this->uri->segment(4)));
 		$ffriday    = date("d-m-Y", strtotime("this Friday".$fday));

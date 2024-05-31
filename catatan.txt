@@ -1,0 +1,5 @@
+as anggota after develop
+-git add .
+-git commit -m "pesan"
+-git push -u origin namabranch
+-masuk ke github, klik "compare & pull request"

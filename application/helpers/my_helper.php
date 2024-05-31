@@ -134,6 +134,39 @@ function _print_pdf($file, $data) {
 
 //Perubahan April-Mei 2023
 function getMinggu($bln){
+    $CI = &get_instance();
+    $date = date("d-".$bln."-Y"); // Membuat tanggal dari input bulan
+    $bulan = date("F", strtotime($date)); // Mendapatkan nama bulan
+    $tahun = date("Y", strtotime($date)); // Mendapatkan tahun
+    
+    // Mendapatkan hari Jumat pertama dan terakhir
+    $firstfriday = date("d", strtotime("first Friday of ".$bulan." ".$tahun)); 
+    $lastfriday = date("d", strtotime("last Friday of ".$bulan." ".$tahun));
+    $lastdate = date("t", strtotime($date)); // Mendapatkan jumlah hari dalam bulan
+    
+    // Menghitung jumlah Jumat dalam bulan tersebut
+    $jMinggu = ($lastfriday - $firstfriday) / 7 + 1;
+    $friday[0] = date("Y-m-d", strtotime("first Friday of ".$bulan." ".$tahun));
+    
+    // Mengisi array dengan semua tanggal Jumat dalam bulan tersebut
+    for ($i = 1; $i < $jMinggu; $i++) {
+        $friday[$i] = date("Y-m-d", strtotime('next Friday', strtotime($friday[$i - 1])));
+    }
+    
+    // Memeriksa apakah tanggal terakhir bulan tersebut adalah hari Jumat
+    $lastDateIsFriday = date('N', strtotime("$tahun-$bln-$lastdate")) == 5;
+    
+    // Jika bukan hari Jumat, tambahkan tanggal terakhir bulan tersebut ke array
+    if (!$lastDateIsFriday) {
+        $friday[] = date("Y-m-d", strtotime("$tahun-$bln-$lastdate"));
+        $jMinggu++; // Tambahkan jumlah Jumat
+    }
+    
+    return [$jMinggu, $friday];
+}
+
+
+function getMinggu2($bln){
     $CI         =& get_instance();
     $date       = date("d-".$bln."-Y");
     $bulan      = date("F", strtotime($date));

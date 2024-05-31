@@ -20,7 +20,7 @@
         </div>
 
         <div class="modal-body">
-        	<form action="<?php echo base_URL()?>index.php/admin/konfirmasi/act_edt/<?php echo $minggu_ke.'/'.$batas_minggu.'/'; ?> name="modal_popup" enctype="multipart/form-data" method="POST">
+        	<form action="<?php echo base_URL()?>index.php/admin/konfirmasi/act_edt/<?php echo $minggu_ke.'/'.$batas_minggu.'/'; ?> name="modal_popup enctype="multipart/form-data" method="POST">
         		
                 <div class="form-group" style="padding-bottom: 20px;">
                 	<label for="Kegiatan Name">Kegiatan </label>
