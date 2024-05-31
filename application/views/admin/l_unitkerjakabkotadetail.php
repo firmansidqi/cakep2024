@@ -95,11 +95,21 @@ else
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab_1">
-                                    <marquee style="animation: marquee 10s linear infinite;font-size: 1em;color: #333;"><b>Entri seluruh kegiatan pada masing-masing minggu, sehingga seluruh kegiatan berstatus <i>approve</i>. Jika terdapat kegiatan yang telah selesai pada minggu sebelumnya, isikan realisasi sebesar 0 pada minggu saat ini/setelahnya. Begitu pula, Jika terdapat kegiatan memiliki target sebesar 0, isikan realisasi sebesar 0. || Jika ada pertanyaan/permasalahan silahkan akses s.bps.go.id/cakepkaltara</b></marquee>
+                                <div class="marquee-container">
+                                    <div class="marquee">
+                                        <b>
+                                            Entri seluruh kegiatan pada masing-masing minggu, sehingga seluruh kegiatan berstatus <i>approve</i>. Jika terdapat kegiatan yang telah selesai pada minggu sebelumnya, isikan realisasi sebesar 0 pada minggu saat ini/setelahnya. Begitu pula, Jika terdapat kegiatan memiliki target sebesar 0, isikan realisasi sebesar 0. || Jika ada pertanyaan/permasalahan silahkan akses s.bps.go.id/cakepkaltara
+                                        </b>
+                                    </div>
+                                </div>
+
+                             
+
                                 <div class="panel-body">
                                     <?php
+                                    $mulai = date('Y-m-d', mktime(0, 0, 0, $uri4, 1, 2024));
                                     for($i = 0; $i < getMinggu($uri4)[0]; $i++)
-                                    {
+                                    {  
                                         $no = 1;
                                         $Friday    = date("Y-m-d", strtotime("this friday ".date("d-m-Y")));
                                         ?>
@@ -112,94 +122,95 @@ else
                                                 </a>
                                             </b>
                                         </div>
-                                        <?php
-                                        if($Friday == getMinggu($uri4)[1][$i]){
-                                        ?>
-                                        <div id="collapse<?php echo $i; ?>" class="accordion-collapse collapse show" role="tabpanel" aria-labelledby="headingOne">
-                                            <?php }else{ ?>
-                                            <div id="collapse<?php echo $i; ?>" class="accordion-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                                            <?php } ?>
-                                                <div class="panel-body">
-                                                    <div style="max-height:650px; overflow:auto">
-                                                        <table class="table table-striped table-hover">
-                                                            <thead style="position:sticky; top: 0; z-index:2">
-                                                                <tr style="height:60px">
-                                                                    <th width="4%" style="vertical-align:middle">No.</th>
-                                                                    <th width="17%" style="vertical-align:middle">Tim Kerja</th>
-                                                                    <th width="30%" style="vertical-align:middle">Nama Kegiatan</th>
-                                                                    <th width="10%" style="vertical-align:middle">Satuan</th>
-                                                                    <th width="5%" style="vertical-align:middle">Target</th>
-                                                                    <th width="10%" colspan="2" style="vertical-align:middle">Realisasi</th>
-                                                                    <th width="10%" style="vertical-align:middle">Batas Waktu</th>
-                                                                    <th width="14%" style="vertical-align:middle">Keterangan</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                            <?php
-                                                                //$konfirm = 1;
-                                                                foreach($data as $d){
-                                                                    if($d->batas_minggu == getMinggu($uri4)[1][$i]){
-                                                                        ?>
-                                                                        <tr>
-                                                                            <td align="center"><?php echo $no; $no++?></td>
-                                                                            
-                                                                            <td><?php echo $d->tim;?></td>
-                                                                            <td>
-                                                                                <?php 
-                                                                                echo $d->nmkegiatan;
-                                                                                if($d->flag_konfirm == 1)
-                                                                                {
-                                                                                ?>
-                                                                                    <span class="badge rounded-pill text-dark" style="background-color:#8da3b9">Belum Entri</span>
-                                                                                <?php
-                                                                                }
-                                                                                else if($d->flag_konfirm == 2)
-                                                                                {
-                                                                                ?>
-                                                                                    <span class="badge rounded-pill text-dark" style="background-color:#ff9c07">Approval</span>
-                                                                                <?php
-                                                                                }else if($d->flag_konfirm == 3)
-                                                                                {
-                                                                                ?>
-                                                                                    <span class="badge rounded-pill text-dark" style="background-color:#41a341">Approve</span>
-                                                                                <?php
-                                                                                }
-                                                                                ?>
-                                                                            </td>
-                                                                            <td align="center"><?php echo $d->satuan;?></td>
-                                                                            <td align="center">
-                                                                                <?php echo $d->target;?>       
-                                                                            </td>
-                                                                            <td align="center">
-                            
-                                                                            <?php 
-                                                                                if($d->flag_konfirm == 1)
-                                                                                {
-                                                                                    echo "-";    
-                                                                                }else{
-                                                                                    echo $d->realisasi;
-                                                                                }
-                                                                            ?>        
-                                                                            </td>
-                                                                            <td align="center">
-                                                                                <div class="btn-group">
-                                                                                    <a href="<?php echo base_URL()?>index.php/admin/entry_unitkerjakab/edt/<?php echo $d->id_jeniskegiatan; ?>/<?php echo $d->id_kab; ?>/<?php echo $d->minggu_ke; ?>" class="btn btn-danger btn-xs" title="Update Data"><i class="icon-plus icon-white"> </i></a>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td align="center"><?php echo tgl_jam_sql($d->batas_waktu);?></td>
-                                                                            <td></td>
-                                                                        </tr>
-                                                                    <?php      
-                                                                    }
-                                                                }
+                                        <?php $show = ($Friday == getMinggu($uri4)[1][$i]) ? "show" : ''; ?>
+                                        <div id="collapse<?php echo $i; ?>" class="accordion-collapse collapse <?= $show; ?>" role="tabpanel" aria-labelledby="headingOne">
+                                            <div class="panel-body">
+                                                <div style="max-height:650px; overflow:auto">
+                                                    <table class="table table-striped table-hover">
+                                                        <?php
+                                                        
                                                             ?>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
+                                                        <thead style="position:sticky; top: 0; z-index:2">
+                                                            <tr style="height:60px">
+                                                                <th width="4%" style="vertical-align:middle">No.</th>
+                                                                <th width="17%" style="vertical-align:middle">Tim Kerja</th>
+                                                                <th width="30%" style="vertical-align:middle">Nama Kegiatan</th>
+                                                                <th width="10%" style="vertical-align:middle">Satuan</th>
+                                                                <th width="5%" style="vertical-align:middle">Target</th>
+                                                                <th width="10%" colspan="2" style="vertical-align:middle">Realisasi</th>
+                                                                <th width="10%" style="vertical-align:middle">Batas Waktu</th>
+                                                                <th width="14%" style="vertical-align:middle">Keterangan</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <?php
+                                                        
+                                                        foreach($data as $d){
+                                                            if($d->batas_minggu > $mulai && $d->batas_minggu <= getMinggu($uri4)[1][$i] ){
+                                                        ?>
+                                                        <tr>
+                                                            <td align="center"><?php echo $no; $no++;?></td>
+                                                            <td><?php echo $d->tim;?></td>
+                                                            <td>
+                                                                <?php 
+                                                                echo $d->nmkegiatan;
+                                                                if($d->flag_konfirm == 1)
+                                                                {
+                                                                ?>
+                                                                    <span class="badge rounded-pill text-dark" style="background-color:#8da3b9">Belum Entri</span>
+                                                                <?php
+                                                                }
+                                                                else if($d->flag_konfirm == 2)
+                                                                {
+                                                                ?>
+                                                                    <span class="badge rounded-pill text-dark" style="background-color:#ff9c07">Approval</span>
+                                                                <?php
+                                                                }else if($d->flag_konfirm == 3)
+                                                                {
+                                                                ?>
+                                                                    <span class="badge rounded-pill text-dark" style="background-color:#41a341">Approve</span>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                            </td>
+                                                            <td align="center"><?php echo $d->satuan;?></td>
+                                                            <td align="center">
+                                                                <?php echo $d->target;?>       
+                                                            </td>
+                                                            <td align="center">
+            
+                                                            <?php 
+                                                                if($d->flag_konfirm == 1)
+                                                                {
+                                                                    echo "-";    
+                                                                }else{
+                                                                    echo $d->realisasi;
+                                                                }
+                                                            ?>        
+                                                            </td>
+                                                            <td align="center">
+                                                                <div class="btn-group">
+                                                                    <a href="<?php echo base_URL()?>index.php/admin/entry_unitkerjakab/edt/<?php echo $d->id_jeniskegiatan; ?>/<?php echo $d->id_kab; ?>/<?php echo $d->minggu_ke; ?>" class="btn btn-danger btn-xs" title="Update Data"><i class="icon-plus icon-white"> </i></a>
+                                                                </div>
+                                                            </td>
+                                                            <td align="center"><?php echo tgl_jam_sql($d->batas_waktu);?></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <?php      
+                                                            }
+                                                            
+                                                        };  
+                                                        ?>
+                                                        </tbody>
+                                                    </table>
                                                 </div>
                                             </div>
+                                            </div>
                                         </div>
-                                        <?php } ?>
+                                        <?php 
+                                    $mulai = getMinggu($uri4)[1][$i];   
+                                    } 
+                                    ?>
                                     </div>
                                 </div>
                           <!-- /.tab-pane -->

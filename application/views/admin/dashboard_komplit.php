@@ -19,11 +19,7 @@
             }
         }
         
-        @keyframes move-icon{
-            0%{
-                transform: translate(0px, 0px);;
-            }
-        }
+        
         
         .dash-progres.bar {
             animation: progress-enter 2s 1;
@@ -81,9 +77,11 @@
             transform: translateY(0);
             opacity: 1;
         }
+
         
         
-        
+
+
     </style>
     
     <?php

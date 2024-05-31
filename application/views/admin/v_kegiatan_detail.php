@@ -87,7 +87,7 @@ $j_minggu = count($datprogress) / 5;
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>No.</th>
+                                         <th>No.</th>
                                         <th>Kabupaten/Kota</th>
                                         <th width="14%">Target</th>
                                         <th width="14%">Target Kumulatif</th>
